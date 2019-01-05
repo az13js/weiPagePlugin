@@ -1,0 +1,19 @@
+{
+	"record":[
+		{"groupIdStr":"tjxa","name":"测试大图","productCount":2,"groupTypeEnum":"CREATE","createTime":"2017-12-14 10:04:45"},
+		{"groupIdStr":"tjwn","name":"测试网格","productCount":2,"groupTypeEnum":"CREATE","createTime":"2017-12-14 10:04:45"},
+		{"groupIdStr":"t62n","name":"测试极简格式","productCount":2,"groupTypeEnum":"CREATE","createTime":"2017-12-14 10:04:45"},
+		{"groupIdStr":"t62a","name":"测试隐藏商品名称","productCount":2,"groupTypeEnum":"CREATE","createTime":"2017-12-14 10:04:45"},
+		{"groupIdStr":"t6zn","name":"测试隐藏商品价格","productCount":2,"groupTypeEnum":"CREATE","createTime":"2017-12-14 10:04:45"}
+	],
+	"hasMore":true,
+	"pageNo":1,
+	"pageCount":3,
+	"pageSize":5,
+	"totalCount":11,
+	"lastId":"",
+	"result":1,
+	"msg":"请求成功",
+	"errCode":"",
+	"successValue":""
+}

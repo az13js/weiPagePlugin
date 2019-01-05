@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<!-- 商品列表插件 -->
+<script type="text/html" id="productList_view">
+	<div class="productList_wrap">
+		<div class="productList_wrap_content {{showType}}">	
+                <ul class="productList_list clearfix">
+                    {{include 'empty_product_child_view'}}
+				   {{include 'empty_product_child_view'}}
+				   {{include 'empty_product_child_view'}}
+				   {{include 'empty_product_child_view'}}
+                </ul>
+		</div>
+     </div>
+</script>
+
+<!-- 商品占位插件 -->
+	<script type="text/html" id="empty_product_child_view">
+		<li class="empty_product_item">
+			<div class="empty_product_item_page">
+				<div class="empty_product_image_wrap">
+						<div class="empty_product_image">
+							<img src="./assets/images/static/goods_stream.png" />
+						</div>
+				</div>
+				<div class="empty_product_text_wrap">
+					<p class="product_name">此处显示商品标题</p>
+					<p class="product_price color_highlight">￥99</p>
+				</div>
+				<div class="empty_product_buyBtn">购买</div>
+			</div>
+		</li>
+	</script>
+	
+	<!-- 商品列表插件编辑 -->
+	<script type="text/html" id="productList_edit">
+		<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+            <h2 class="plugIn_name">商品列表</h2>            
+			<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>				
+			<div class="yui_form_wrap">
+					<p class="input_lable">显示样式：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="showType" value="WATERFALL" {{if showType == 'WATERFALL'}}checked="checked"{{/if}} /> 瀑布流  <input type="radio" name="showType" value="LIST" {{if showType == 'LIST'}}checked="checked"{{/if}} /> 列表
+							<input type="radio" name="showType" value="GRID" {{if showType == 'GRID'}}checked="checked"{{/if}} /> 网格  <input type="radio" name="showType" value="BIG" {{if showType == 'BIG'}}checked="checked"{{/if}} /> 大图
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">选择分组：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_group" data-plugIn="plugIn">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_group" data-plugIn="plugIn">+选择分组</span>
+							{{/if}}		
+						</div>
+					</div>
+			</div>		
+			<div class="yui_form_wrap">
+					<p class="input_lable">显示个数：</p>
+					<div class="input_wrap">					
+						<div class="form_one">
+							<select class="float_left" name="showCount">
+								<option {{if showCount == 4}}selected="selected"{{/if}} value="4">4</option>
+								<option {{if showCount == 6}}selected="selected"{{/if}} value="6">6</option>
+								<option {{if showCount == 8}}selected="selected"{{/if}} value="8">8</option>
+							</select>	
+						</div>
+					</div>
+			</div>		
+</script>
+</body>
+</html>

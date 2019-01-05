@@ -1,0 +1,8 @@
+{
+	"result":1,
+	"msg":"",
+	"list":[
+		{"categoryId":1043,"categoryName":"服饰","parentCategoryId":0,"picUrl":"http://shop-image.bookingtee.com/"},
+		{"categoryId":1044,"categoryName":"球具","parentCategoryId":0,"picUrl":"http://shop-image.bookingtee.com/"},
+		{"categoryId":1045,"categoryName":"健康","parentCategoryId":0,"picUrl":"http://shop-image.bookingtee.com/"}
+	]}

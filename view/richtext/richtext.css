@@ -1,0 +1,10 @@
+.plugIn_wrap .RTE_wrap {
+    padding: 8.5px;
+    word-wrap: break-word
+}
+.RTE_wrap img {
+    max-width: 100%
+}
+.RTE_wrap table {
+    width: 100%
+}

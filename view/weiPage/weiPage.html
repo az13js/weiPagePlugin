@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<!-- 微页面编辑 -->
+		<script type="text/html" id="weiPage_edit">
+            <h2 class="plugIn_name">微页面标题</h2>           
+			<div class="yui_form_wrap">
+					<p class="input_lable">封面图片：</p>
+					<div class="input_wrap">							
+						<div class="image_wrap float_left">
+							<div class="upload_image image_item {{picUrl | uploadComplete}}" data-action="true" >
+								<img class="image_view" src="{{picUrl | uploadImage}}" />
+								<input type="file" name="picUrl" class="input_image" />
+							</div>
+						</div>	
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">页面名称：</p>
+					<div class="input_wrap">						
+						<div class="form_one">
+							<p><input type="text" data-check="notEmpty" class="input_text float_left size_l_m" name="title" value="{{title}}" placeholder="请输入微页面标题" /></p>
+							<p><span class="input_tips float_left" data-check="notEmpty">微页面标题不能为空</span></p>
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">页面描述：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="descr" value="{{descr}}" placeholder="用户通过微信分享给好友时，会自动显示页面描述" />	
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">备注：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="remark" value="{{remark}}" placeholder="备注内容不会在前端显示" />	
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>	
+ 		</script>
+		
+		
+		<!-- 插件公共包装 -->
+		<script type="text/html" id="plugIn_common_page">
+			<div id="{{plugInUuid | parsePlugInUuid}}" data-plugInUuid="{{plugInUuid}}" class="plugIn_wrap {{plugInSelect |parsePlugInSelect}}" style="background-color:{{backgroundColor}};background-image:url({{showbgPicUrl}})">
+				{{#plugInHtml}}
+			</div>
+		</script>
+</body>
+</html>

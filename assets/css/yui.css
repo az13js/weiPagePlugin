@@ -1,0 +1,397 @@
+body.yui{
+	color:#333;
+}
+/* 文字颜色 */
+body.yui .color_warn{
+	color:#d51930
+}
+body.yui .color_link{
+	color:#0044dd;
+}
+body.yui .color_highlight{
+	color:#138ed4;
+}
+body.yui .color_emphasis{
+	color:#000;	
+}
+body.yui .color_remark{
+	color:#999;
+}
+body.yui .color_surplus{
+	color:#24a900;
+}
+body.yui .color_deficit{
+	color:#ff4466
+}
+/* 按钮样式 */
+body.yui .yui_btn{
+	display: inline-block;
+	vertical-align: middle;
+	border: 1px solid #e5e5e5;
+	font-size:12px;
+	line-height:12px;
+	border-radius:2px;
+	cursor:pointer;
+	padding:2px;
+}
+body.yui .yui_btn.btn_square{
+	border-radius:0;
+}
+body.yui .yui_btn.btn_size_s{
+	padding:6px 12px;
+}
+body.yui .yui_btn.btn_size_l{
+	padding:8px 16px;
+}
+body.yui .yui_btn.btn_confirm{
+	color: #fff;
+    border: 1px solid #138ed4;
+    background-color: #138ed4;
+}
+body.yui .yui_btn.btn_confirm:hover{
+	background-color: #289bdc;
+}
+body.yui .yui_btn.btn_confirm:active{
+	background-color:#249df3;
+}
+body.yui .yui_btn.btn_cancel{
+	color: #333;
+    border: 1px solid #e5e5e5;
+    background-color: #f2f2f2;
+}
+body.yui .yui_btn.btn_cancel:hover{
+	background-color: #f7f7f7;
+}
+body.yui .yui_btn.btn_cancel:active{
+	background-color: #fcfcfc;
+}
+
+/* 绿色主题 */
+body.yui.greenStyle .color_highlight{
+	color:#00ff22;
+}
+body.yui.greenStyle .yui_btn.btn_confirm{
+	color: #fff;
+    border: 1px solid #00ff22;
+    background-color: #00ff22;
+}
+body.yui.greenStyle .yui_btn.btn_confirm:hover{
+	background-color: #44ff00;
+}
+body.yui.greenStyle .yui_btn.btn_confirm:active{
+	background-color:#aaff00;
+}
+
+/* 模拟手机框组件 */
+body.yui .yui_mobile{
+	width: 375px;
+    position: relative;
+    background-color: #f4f4f4;
+    box-shadow: 5px 5px 5px #e5e5e5;
+    border: 1px solid #e5e5e5;
+    overflow: hidden;
+}
+body.yui .yui_mobile .yui_mobile_head{
+	width: 100%;
+    height: 64px;
+    background-image: url(../../assets/images/static/titlebar.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+body.yui .yui_mobile .yui_mobile_head>h1{
+	padding: 20px 65px 0;
+    line-height: 42px;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: 400;
+}
+body.yui .yui_mobile .yui_mobile_body{
+	min-height:600px;
+	font-size:12px;
+	padding-bottom:20px;
+}
+/* 底部横栏 */
+body.yui .bottom_banner{
+		position:fixed;
+		bottom:0px;
+		left:230px;
+		right:30px;
+		height:56px;
+		background-color:#f0f3f6;
+}
+body.yui .bottom_banner .bottom_banner_content{
+	margin:13px auto;
+	width:120px;
+}
+/* 表单组件 */
+body.yui .yui_form_wrap{
+	margin: 0 0 15px;
+}
+body.yui .yui_form_wrap.not_interval{
+	margin:0;
+}
+body.yui .yui_form_wrap:after{
+	content: "";
+    height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+body.yui .yui_form_wrap .input_lable{
+	padding-right: 6px;
+    width: 90px;
+    line-height: 30px;
+    text-align: right;
+    float: left;
+    overflow:hidden;
+}
+body.yui .yui_form_wrap .input_lable.big{
+	width:120px;
+}
+body.yui .yui_form_wrap .input_wrap{
+	float: left;
+    vertical-align: middle;
+    font-size:12px;
+}
+body.yui .yui_form_wrap .input_wrap .form_one{
+	overflow:hidden;
+	line-height:30px;
+}
+body.yui .yui_form_wrap .input_wrap .form_one .form_one_control{
+	height: 30px;
+    margin-bottom: 10px;
+}
+body.yui .yui_form_wrap .input_wrap .form_being_control{
+	float:left;
+	margin-left:5px;
+}
+body.yui .yui_form_wrap .input_wrap .form_being_control .form_one{
+	margin-bottom:10px;
+	min-height: 30px;
+}
+body.yui .yui_form_wrap .input_wrap .form_one .input_text{
+	padding: 8px 10px;
+    height: 12px;
+    width: 140px;
+    border: 1px solid #e5e5e5;
+    border-radius:2px;
+}
+body.yui .yui_form_wrap .input_wrap .form_one .input_text.size_l{
+	width:280px;
+}
+body.yui .yui_form_wrap .input_wrap .form_one .input_text.size_l_m{
+	width:180px;
+}
+body.yui .yui_form_wrap .input_wrap .form_one .input_text.size_m{
+	width:80px;
+}
+body.yui .yui_form_wrap .input_wrap .form_one .input_text.size_s{
+	width:40px;
+}
+body.yui .yui_form_wrap .input_wrap .form_one .input_text.size_s_s{
+	width:26px;
+}
+body.yui .yui_form_wrap .input_wrap .form_one span{
+	vertical-align:middle;
+}
+body.yui .yui_form_wrap .input_wrap .form_one select{
+	width: 140px;
+    height: 26px;
+    padding: 0 10px;
+    line-height: 28px;
+    border: 1px solid #e5e5e5;
+    background-color: #F2F2F2;
+    border-radius: 2px;
+    border: 1px solid #e5e5e5;
+}
+body.yui .yui_form_wrap .input_wrap .form_one input[type='radio']{
+	vertical-align:middle;
+}
+body.yui .yui_form_wrap .input_wrap .input_text[readonly='readonly']{
+    background-color: #f2f2f2;
+    border: 1px solid #e5e5e5;
+    width:120px;
+}
+body.yui .yui_form_wrap .input_wrap .tag_wrap{
+	height: 28px;
+    border: 1px solid #E5E5E5;
+    margin-top:1px;
+}
+body.yui .yui_form_wrap .input_wrap .tag_wrap .tag_label{
+	width: 32px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    background-color: #e5e5e5;
+    float:left;
+}
+body.yui .yui_form_wrap .input_wrap .tag_wrap .tag_input{
+	height: 20px;
+    padding: 4px 10px;
+    font-size: 14px;
+    line-height: 20px;
+    border: 0 none;
+    width:110px;
+    float:left;
+}
+body.yui .yui_form_wrap .input_wrap .tag_wrap .tag_input[readonly='readonly']{
+    background-color: #f2f2f2;
+}
+body.yui .yui_form_wrap .input_wrap input[type='color']{
+	width:72px;
+	height:28px;
+	padding:0 23px 0 5px;
+	cursor:pointer;
+	background-color:#f2f2f2;
+	position:relative;
+	border:1px solid #e5e5e5;
+	border-radius:2px;
+}
+body.yui .yui_form_wrap .input_wrap input[type='color']:after{
+	position:absolute;
+	content:'';
+	width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 8px solid #999;
+    right:8px;
+    top:10px;
+}
+body.yui .yui_form_wrap .input_wrap input[type='range']{
+	display: block;
+    height: 24px;
+    line-height: 24px;
+    padding: 3px 0px;
+    outline: 0 none;
+    -webkit-appearance: none;
+    background-color: transparent;
+    float:left;
+}
+body.yui .yui_form_wrap .input_wrap input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    margin: -7px 0 0;
+    border-radius: 10px;
+    background-color: #138ed4
+}
+body.yui .yui_form_wrap .input_wrap input[type='range']::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    border: 1px solid #979797;
+    background-color: #b0c9ec;
+    cursor: pointer
+}
+body.yui .yui_form_wrap .input_wrap .range_text{
+    vertical-align: middle;
+    padding-left:20px;
+    display:inline-block;
+    float:left;
+}
+body.yui .yui_form_wrap .input_wrap .label_btn[type='button']{
+	height: 28px;
+	padding: 0 15px;
+	border: 1px solid #e6e6e6;
+	outline: 0 none;
+	border-radius: 2px;
+	background-color: #f2f2f2;
+	color: #666;
+	cursor: pointer;
+}
+body.yui .yui_form_wrap .input_wrap .label_btn[type='button']:hover{
+	background-color: #fff;
+}
+body.yui .yui_form_wrap .input_wrap .label_btn[type='button']:active{
+	background-color: #f6f6f6;
+}
+body.yui .yui_form_wrap .input_wrap  textarea{
+	width:270px;
+	height:100px;
+	border: 1px solid #e5e5e5;
+}
+body.yui .yui_form_wrap .input_wrap  textarea.size_s{
+	width:160px;
+	height:56px;
+}
+body.yui .yui_form_wrap .input_wrap .image_wrap{
+    width: 60px;
+    height: 60px;
+    margin: 0 10px 10px 0;
+    position:relative;
+}
+body.yui .yui_form_wrap .input_wrap .image_wrap .delete_image{
+	display:inline-block;
+	width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    position: absolute;
+    top: -6px;
+    cursor: pointer;
+	background-image:url(../../assets/images/static/icon_delete.png);
+	background-size:12px 12px;
+	left: 56px;
+    z-index: 2;
+}
+body.yui .yui_form_wrap .input_wrap .image_wrap .image_item{
+	position: relative;
+    width: 60px;
+    height: 60px;
+    background-color: #eee;
+    background-image:url(../../assets/images/static/add_picture.png);
+    background-size:100% 100%;
+    border:2px dashed #e5e5e5;
+	border-radius:2px;
+	cursor:pointer;
+}
+body.yui .yui_form_wrap .input_wrap .image_wrap .image_item.complete{
+	background-size: 0;
+}
+body.yui .yui_form_wrap .input_wrap .image_wrap .image_item .input_image{
+	display:none;
+}
+body.yui .yui_form_wrap .input_wrap .image_wrap .image_item .image_view{
+	position: absolute;
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+body.yui .yui_form_wrap .input_wrap .form_one input_text:focus,body.yui .yui_form_wrap .input_wrap .form_one textarea:focus{
+    border: 1px solid #138ed4;
+}
+/* 表单校验 */
+body.yui .yui_form_wrap .input_wrap .form_one .input_tips{
+	display:none;
+    visibility: hidden;
+    position: relative;
+    height: 30px;
+    margin: 0 0 0 25px;
+    line-height: 30px;
+    color: #ff0000;
+}
+body.yui .yui_form_wrap .input_wrap .form_one p .input_tips{
+	margin:0;
+}
+body.yui .yui_form_wrap .input_wrap .form_one .input_tips.show{
+	visibility: visible;
+	display: inline-block;
+}
+body.yui .yui_form_wrap .input_wrap .form_one.checkNotThrough .input_text{
+	border:1px solid #ff0000;
+}
+body.yui .yui_form_wrap .input_wrap .form_one.checkNotThrough .tag_wrap{
+	border: 1px solid #ff0000;
+}
+body.yui .yui_form_wrap .input_wrap .form_one.checkNotThrough .tag_wrap .tag_label{
+	background-color: #ff0000;
+	color:#fff;
+}

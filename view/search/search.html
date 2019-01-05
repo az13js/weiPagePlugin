@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<!-- 搜索插件 -->
+	<script type="text/html" id="search_view">
+            <div class="search_wrap">
+				<div class="search_box font_10">
+					<span>搜索</span>
+				</div>				
+			</div>
+	</script>
+	<!-- 搜索子插件 -->
+	<script type="text/html" id="search_child_view">
+		<span id="{{plugInUuid | parsePlugInUuid}}" data-plugInUuid="{{plugInUuid}}" class="search_item subPlugIn_wrap {{plugInSelect |parsePlugInSelect}}">{{name}}</span>
+	</script>
+	<!-- 搜索插件编辑 -->
+	<script type="text/html" id="search_edit">
+			<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+            <h2 class="plugIn_name">搜索</h2> 
+			<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">搜索关键词：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{each subPlugInList as item}}
+								<span class="subPlugIn_wrap search_lable {{if item.plugInSelect}}current{{/if}}" data-plugInUuid="{{item.plugInUuid}}">{{item.name}}</span>
+							{{/each}}
+						</div>
+					</div>
+			</div>	
+	</script>
+	<!-- 搜索子插件编辑 -->
+	<script type="text/html" id="search_child_edit">
+		<hr/>
+		<div class="addPlugIn addPlugIn_icon"></div>	
+		<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}" data-subPlugInId="{{plugInCommonIdStr}}"></div>
+		<div class="subPlugIn_option_page">			
+			<div class="yui_form_wrap">
+					<p class="input_lable">热搜关键词：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<p><input type="text" data-check="notEmpty" class="input_text float_left size_l_m" name="name" value="{{name}}" data-redraw-form="true" placeholder="请输入热搜关键词" /></p>	
+							<p><span class="input_tips float_left" data-check="notEmpty">关键词不能为空</span></p>
+						</div>
+					</div>
+			</div>	
+		</div>
+	</script>
+</body>
+</html>

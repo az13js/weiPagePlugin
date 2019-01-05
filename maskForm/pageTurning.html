@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<!-- 表格翻页 -->
+    <script id="pageTurning" type="text/html">
+        <div class="page_turning float_right">
+            {{if nextPage.state}}
+            <div class="input_button button_m button_gray float_right" data-pageIndex="{{nextPage.value}}" style="margin:0 0 0 15px;">下一页</div>
+            {{/if}}
+            {{if prevPage.state}}
+            <div class="input_button button_m button_gray float_right" data-pageIndex="{{prevPage.value}}" style="margin:0 0 0 15px;">上一页</div>
+            {{/if}}
+            <div class="number_turning float_right">
+                <input type="text" value="{{pageNo}}" class="now_number float_left">
+                <p class="number_wrap float_left">/&nbsp;<span id="all_number">{{pageCount}}</span>页</p>
+            </div>
+            <ul class="button_turning float_right">
+                {{each indexList as item}}
+                {{if item.value == "..."}}
+                <li class="no_style">...</li>
+                {{else}}
+                {{if item.current}}
+                <li class="current" data-pageIndex="{{item.value}}">{{item.value}}</li>
+                {{else}}
+                <li data-pageIndex="{{item.value}}">{{item.value}}</li>
+                {{/if}}
+                {{/if}}
+                {{/each}}
+            </ul>
+            <p class="turning_info float_right">共<span>{{totalCount}}</span>条，每页<span>{{pageSize}}</span>条</p>
+        </div>
+    </script>
+</body>
+</html>

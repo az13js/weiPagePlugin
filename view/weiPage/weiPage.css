@@ -1,0 +1,235 @@
+	.wrap{
+		margin:30px 50px;		
+	}
+	.weipage_page{
+		position:relative;
+		padding-left:180px;
+		padding-bottom:60px;
+	}
+	.weipage_page .edit_page{
+		position:absolute;
+		left:600px;
+		top:0;
+		padding:10px;
+		width: 380px;
+		border: 1px solid #E6E6E6;
+    		font-size: 14px;
+    		border-radius: 4px;
+    		background-color: #F7F7F7;    
+	}
+	.weipage_page .edit_page .to_left_arrow{
+		position: absolute;
+	    left: -28px;
+	    top: 20px;
+	    width: 0;
+	    height: 0;
+	    border: 14px solid transparent;
+	    border-right: 14px solid #E6E6E6;
+	}
+	.weipage_page .edit_page .to_left_arrow:before{
+		position: absolute;
+	    display: block;
+	    content: "";
+	    left: -11px;
+	    top: -13px;
+	    width: 0;
+	    height: 0;
+	    border: 13px solid transparent;
+	    border-right: 12px solid #F7F7F7;
+	}
+	.weipage_page .edit_page .edit_form{
+		position:relative;
+	}
+	.weipage_page .edit_page .plugIn_name{
+		text-align: center;
+		height:25px;
+	}
+	.weipage_page .edit_page .removePlugIn_icon{
+		position: absolute;
+	    left: 5px;
+	    top: 5px;
+	    width: 10px;
+	    height: 10px;
+	    padding: 6px;
+	    background-image: url(../../assets/images/static/icon_delete.png);
+	    background-size: 100%;
+	    cursor: pointer;
+	    z-index: 100;
+	}
+	.weipage_page .edit_page .addPlugIn_icon{
+		position: absolute;
+	    left: 35px;
+	    top: 5px;
+	    width: 10px;
+	    height: 10px;
+	    padding: 6px;
+	    background-image: url(../../assets/images/static/icon_add.png);
+	    background-size: 100%;
+	    cursor: pointer;
+	    z-index: 100;
+	}
+	.weipage_page .edit_page .input_wrap{
+		max-width:250px;
+	}
+	.weipage_page .edit_page .subPlugIn_option_page{
+		position: relative;
+		border-radius: 4px;
+    		background-color: #fff;
+    		padding: 20px 0 1px;
+	}
+	.weipage_page .edit_page .search_lable{
+		padding: 8px 10px;
+	    background-color: #fff;
+	    border-radius: 2px;
+	    margin-right: 5px;
+	    margin-bottom: 5px;
+	    cursor: pointer;
+	    min-width: 28px;
+	    min-height: 16px;
+	    line-height: 16px;
+	    float:left;
+	}
+	.weipage_page .edit_page .search_lable.current{
+		box-shadow: 0 0 5px #666;
+	}
+	.weipage_page .edit_page .image_item.current{
+		box-shadow: 0 0 5px #666;
+	}
+	.weipage_page .edit_page .quote_page{
+		padding: 15px 30px;
+    		border-radius: 4px;
+    		background-color: #fff;
+	}
+	.weipage_page .edit_page .option_blue_btn{
+		display: inline-block;
+	    height: 30px;
+	    line-height: 30px;
+	    padding: 0 10px;
+	    margin: 0 0 0 5px;
+	    color: #138ED4;
+	    cursor: pointer;
+	}
+	.weipage_page .edit_page .edit_RTE_wrap{
+		display:none;
+	}
+	.edit_page .title_btn{
+		height: 30px;
+	    line-height: 30px;
+	    padding: 0 10px;
+	    color: #FFF;
+	    background-color: #138ED4;
+	    border-radius: 3px;
+	    max-width: 170px;
+	    float: left;
+	    display: -webkit-box;
+	    -webkit-box-orient: vertical;
+	    -webkit-line-clamp: 1;
+	    overflow: hidden;
+	}
+		
+	.weipage_page .yui_mobile .yui_mobile_body{
+		position:relative;
+		background-color:#fff;
+	}
+	.weipage_page .yui_mobile .yui_mobile_body .plugIn_wrap{
+		position: relative;
+	    min-height: 20px;
+	    background-size: 100% 100%;
+	    background-repeat: no-repeat;
+	    border: 1px dashed transparent;
+	}
+	.weipage_page .yui_mobile .yui_mobile_body .plugIn_wrap.current{
+		border-color: #f00;
+	}
+	.weipage_page .yui_mobile .yui_mobile_body .subPlugIn_wrap.current{
+		box-shadow: 0 0 5px #666;
+	}
+	
+	.weipage_page .model_nav_wrap {
+	    width: 130px;
+	    padding: 14px;
+	    border: 1px solid #e6e6e6;
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    z-index: 2;
+	    background-color: #fefefe;
+	}
+	.weipage_page .model_nav_wrap .title {
+	    height: 22px;
+	    line-height: 22px;
+	    padding: 10px 0 15px;
+	    text-align: center;
+	    font-size: 14px;
+	    font-weight: 400;
+	    border-bottom: 1px solid #E6E6E6
+	}
+	.weipage_page .model_nav_wrap .weipage_nav_list {
+	    padding: 15px 0 0;
+	}
+	.weipage_page .model_nav_wrap .weipage_nav_list>li {
+	    width: 108px;
+	    height: 22px;
+	    padding: 8px 0;
+	    line-height: 22px;
+	    border-radius: 4px;
+	    text-align: center;
+	    margin: 0 auto 15px;
+	    cursor: pointer;
+	}
+	.weipage_page .model_nav_wrap .weipage_nav_list>.orange {
+	    border: 1px solid #feb77f;
+	    background-color: #fff1e7;
+	}
+	.weipage_page .model_nav_wrap .weipage_nav_list>.blue {
+	    border: 1px solid #a2cde3;
+	    background-color: #e7f7ff;
+	}
+	.weipage_page .model_nav_wrap .weipage_nav_list>.green {
+	    border: 1px solid #afe5a7;
+	    background-color: #eaffe7;
+	}
+	.weipage_page .model_nav_wrap .weipage_nav_list>.red {
+	    border: 1px solid #e8acac;
+	    background-color: #ffe7e7;
+	}
+	.weipage_page .model_nav_wrap .weipage_nav_list>.purple {
+	    border: 1px solid #aca4d5;
+	    background-color: #ebe7ff;
+	}
+	.weipage_page .model_nav_wrap .weipage_nav_list>.pink {
+	    border: 1px solid #cba5d1;
+	    background-color: #fce7ff;
+	}
+	.weipage_page .model_nav_wrap .weipage_nav_list>.yellow {
+	    border: 1px solid #c3c775;
+	    background-color: #feffe7;
+	}
+	.weipage_page .model_nav_wrap .weipage_nav_list>.mazarine{
+		border: 1px solid #a0c1e9;
+	    background-color: #e7f2ff;
+	}
+	.weipage_page .model_nav_wrap .weipage_nav_list>.white{
+		border: 1px solid #ccc;
+	    background-color: #fff;
+	}
+	.weipage_page .model_nav_wrap .weipage_nav_list>.gray{
+		border:1px solid #999;
+		background-color:#f4f4f4;
+	}
+	
+	.edit_page .edit_form .add_subPlugIn{
+		line-height:30px;
+		cursor:pointer;
+	}
+	
+	.weipage_foot_operate{
+		width:100%;
+		padding:15px 0;
+		background-color: #e6f5fd;
+		text-align: center;
+	}
+	
+	.yui_mobile_body .tempPlugIn{
+		opacity:0.3;
+	}

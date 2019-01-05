@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link type="text/css" rel="stylesheet" href="./assets/css/reset.css">
+<link type="text/css" rel="stylesheet" href="./assets/css/yui.css">
+<link type="text/css" rel="stylesheet" href="./assets/css/maskTab.css">
+
+<link type="text/css" rel="stylesheet" href="./view/weiPage/weiPage.css">
+<link type="text/css" rel="stylesheet" href="./view/product/product.css">
+<link type="text/css" rel="stylesheet" href="./view/banner/banner.css">
+<link type="text/css" rel="stylesheet" href="./view/nav/nav.css">
+<link type="text/css" rel="stylesheet" href="./view/search/search.css">
+<link type="text/css" rel="stylesheet" href="./view/richtext/richtext.css">
+<link type="text/css" rel="stylesheet" href="./view/showcase/showcase.css">
+<link type="text/css" rel="stylesheet" href="./view/productGroup/productGroup.css">
+<link type="text/css" rel="stylesheet" href="./view/productList/productList.css">
+
+<script type="text/javascript" src="./assets/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="./assets/js/template.js"></script>
+<script type="text/javascript" src="./assets/js/basic.js"></script>
+<script type="text/javascript" src="./assets/js/formCheck.js"></script>
+<script type="text/javascript" src="./assets/js/maskTabDialog.js"></script>
+<script type="text/javascript" src="./assets/js/pageTurning.js"></script>
+<script type="text/javascript" src="./assets/js/dataEngine.js"></script>
+<script type="text/javascript" src="./assets/js/weiPageTemplateHelper.js"></script>
+
+<script type="text/javascript" src="./model/weiPageModel.js"></script>
+<script type="text/javascript" src="./config/weiPageConfig.js"></script>
+<script type="text/javascript" src="./config/otherConfig.js"></script>
+<script type="text/javascript" src="./controler/weiPageService.js"></script>
+<script type="text/javascript" src="./controler/weiPageViewAction.js"></script>
+<script type="text/javascript" src="./controler/weiPageAction.js"></script>
+<script type="text/javascript" src="./controler/weiPageDropAction.js"></script>
+<script type="text/javascript" src="./controler/weiPageMaskDialogAction.js"></script>
+</head>
+<body class="yui">
+			
+		<div class="weipage_page">
+				<div class="model_nav_wrap">
+			            <h2 class="title">添加内容</h2>
+			            <ul class="weipage_nav_list">
+			                <li class="orange" data-plugIntype="TEXTNAVI">导航</li>
+			                <li class="blue" data-plugIntype="RICHTEXT">富文本</li>
+			                <li class="green" data-plugIntype="BLANK">辅助空白</li>
+			                <li class="red" data-plugIntype="BANNER">图片广告</li>
+			                <li class="purple" data-plugIntype="SHOP">商品</li>
+			                <li class="pink" data-plugIntype="RELATED">引用模块</li>
+			                <li class="mazarine" data-plugIntype="SEARCH">搜索</li>
+			                <li class="yellow" data-plugIntype="SHOWCASE">橱窗</li>
+			                <li class="white" data-plugIntype="PRODUCT_GROUP">商品分组</li>
+			                <li class="gray" data-plugIntype="PRODUCT_LIST">商品列表</li>
+			            </ul>
+			        </div>
+			
+					<div class="yui_mobile">
+						<div class="yui_mobile_head">
+							<h1>页面标题</h1>
+						</div>
+						<div id="mobilePage" class="yui_mobile_body">
+							
+						</div>
+					</div>
+					
+					<div class="edit_page" id="plugIn_edit_page">
+						<form id="plugIn_option_form" class="edit_form">
+						</form>
+						<form id="subPlugIn_option_form" class="edit_form">
+						</form>
+						<!-- 富文本编辑器 -->
+			            <div id="edit_RTE_wrap" class="edit_RTE_wrap">
+			                <script id="edit_RTE" type="text/plain" style="width:330px;height:300px;"></script>
+			            </div>
+						<div class="to_left_arrow"></div>
+					</div>
+			</div>
+			
+			<!-- 弹框表格 -->
+			<div class="mask_tab_wrap">
+					<div class="back_black"></div>
+					<div class="tab_outer_page">
+						<div class="tab_content" id="mask_tab_wrap_content">
+					
+						</div>
+					</div>
+			</div>
+		
+		<div class="weipage_foot_operate">
+				<div class="yui_btn btn_size_l btn_confirm save_btn" id="saveBtn">保存</div>
+		</div>
+		
+	<!-- 以下是弹框的模板 -->
+	
+	<!-- 公共蒙层模板/表单列表 -->
+	<script type="text/html" id="mask_common_formList_confirm">
+			<div class="tab_content_title"><span class="title_text">{{title}}</span><input type="button" class="close_tab" /></div>
+			<div class="mask_tab_search_form">
+				<form id="mask_tab_search_form">
+					<div class="mask_tab_search_wrap">
+						<input type="text" name="searchTitle" data-key-name="searchTitle" class="mask_tab_search_text" />
+						<div class="mask_tab_search_btn"></div>
+					</div>
+				</form>
+			</div>
+			<div class="mask_confirm_btn yui_btn btn_size_l btn_confirm">确定</div>
+	</script>
+	<!-- 公共蒙层模板/表单列表 -->
+	<script type="text/html" id="mask_common_formList">
+			<div class="tab_content_title"><span class="title_text">{{title}}</span><input type="button" class="close_tab" /></div>
+			<div class="mask_tab_search_form">
+				<form id="mask_tab_search_form">
+					<div class="mask_tab_search_wrap">
+						<input type="text" name="searchTitle" data-key-name="searchTitle" class="mask_tab_search_text" />
+						<div class="mask_tab_search_btn"></div>
+					</div>
+				</form>
+			</div>
+	</script>
+	<!-- 表格翻页 -->
+    <script id="pageTurning" type="text/html">
+        <div class="page_turning float_right">
+            {{if nextPage.state}}
+            <div class="input_button button_m button_gray float_right" data-pageIndex="{{nextPage.value}}" style="margin:0 0 0 15px;">下一页</div>
+            {{/if}}
+            {{if prevPage.state}}
+            <div class="input_button button_m button_gray float_right" data-pageIndex="{{prevPage.value}}" style="margin:0 0 0 15px;">上一页</div>
+            {{/if}}
+            <div class="number_turning float_right">
+                <input type="text" value="{{pageNo}}" class="now_number float_left">
+                <p class="number_wrap float_left">/&nbsp;<span id="all_number">{{pageCount}}</span>页</p>
+            </div>
+            <ul class="button_turning float_right">
+                {{each indexList as item}}
+                {{if item.value == "..."}}
+                <li class="no_style">...</li>
+                {{else}}
+                {{if item.current}}
+                <li class="current" data-pageIndex="{{item.value}}">{{item.value}}</li>
+                {{else}}
+                <li data-pageIndex="{{item.value}}">{{item.value}}</li>
+                {{/if}}
+                {{/if}}
+                {{/each}}
+            </ul>
+            <p class="turning_info float_right">共<span>{{totalCount}}</span>条，每页<span>{{pageSize}}</span>条</p>
+        </div>
+    </script>
+    <!-- 表单列表头部 -->
+	<script type="text/html" id="mask_formList_head">
+    		<table class="mask_form_table" id="pageList">
+				<thead class="center_middle">
+					     <tr>
+					             <td style="width:400px">标题</td>
+					             <td style="width:150px">创建时间</td>
+					             <td style="width:100px">操作</td>
+					     </tr>
+				</thead>
+				<tfoot>
+					      <tr>
+					               <td colspan="3" class="clearfix"></td>
+					       </tr>
+				</tfoot>
+				<tbody class="center_middle">
+					                  
+				</tbody>
+		</table>
+	</script>
+	<!-- 表单列表分类 -->
+	<script id="mask_formList_category" type="text/html">
+      {{each list as item}}
+        <tr data-id="{{item.categoryId}}" data-title="{{item.categoryName}}">
+           <td>{{item.categoryName}}</td>
+           <td></td>
+           <td><span class="select_button" data-type="product_category">选取</span></td>
+        </tr>
+        {{/each}}
+	</script>
+	<!-- 表单列表商品 -->
+	<script id="mask_formList_group_more" type="text/html">
+   	{{each record as item}}
+        <tr data-id="{{item.groupIdStr}}" data-title="{{item.name}}">
+           <td>{{item.name}}</td>
+           <td>{{item.createTime}}</td>
+           <td>
+				<span class="group_checked_button checked_button">选取</span>
+				<span class="group_cancel_button cancel_button">取消</span>		
+		  </td>
+        </tr>
+   	{{/each}}
+	</script>
+	<!-- 表单列表分组 -->
+	<script id="mask_formList_group" type="text/html">
+	{{each record as item}}
+         <tr data-id="{{item.groupIdStr}}" data-title="{{item.name}}">
+           <td>{{item.name}}</td>
+           <td>{{item.createTime}}</td>
+           <td><span class="select_button" data-type="product_group">选取</span></td>
+        </tr>
+     {{/each}}
+	</script>
+	<!-- 表单列表商品 -->
+	<script id="mask_formList_product_more" type="text/html">
+        {{each record as item}}
+        <tr data-id="{{item.productId}}" data-picKey="{{item.picKey}}" data-picUrl="{{item.picUrl}}" data-title="{{item.productName}}" data-originalPrice="{{item.originalPrice}}" data-price="{{item.sellingPrice}}">
+           <td>
+				<div class="image_wrap float_left">
+                   		<img src="{{item.picUrl}}?x-oss-process=image/resize,m_pad,h_480,w_480,color_FFFFFF" alt="" class="image">                  			
+                 </div>
+				<div class="float_left" style="text-align:left;margin-left: 10px;max-width: 300px">
+					<p>{{item.productName}}</p>
+					<p>
+						<span style="color:#d0021b;margin-right:10px">￥{{item.sellingPrice}}</span>
+						{{if item.originalPrice > 0}}
+							<del style="color:#999">￥{{item.originalPrice}}</del>
+						{{/if}}						
+					</p>
+				</div>
+		  </td>
+           <td>{{item.createTime}}</td>
+           <td>
+				<span class="product_checked_button checked_button">选取</span>
+				<span class="product_cancel_button cancel_button">取消</span>		
+		  </td>
+        </tr>
+        {{/each}}
+	</script>
+	<!-- 表单列表商品 -->
+	<script id="mask_formList_product" type="text/html">
+        {{each record as item}}
+        <tr class="productTr" data-id="{{item.productId}}" data-title="{{item.productName}}" data-picKey="{{item.picKey}}" data-picUrl="{{item.picUrl}}">
+           <td>
+				<div class="image_wrap float_left">
+                   		<img src="{{item.picUrl}}?x-oss-process=image/resize,m_pad,h_480,w_480,color_FFFFFF" alt="" class="image">                  			
+                 </div>
+				<div class="float_left" style="text-align:left;margin-left: 10px;max-width: 300px">
+					<p>{{item.productName}}</p>
+					<p>
+						<span style="color:#d0021b;margin-right:10px">￥{{item.sellingPrice}}</span>
+						{{if item.originalPrice > 0}}
+							<del style="color:#999">￥{{item.originalPrice}}</del>
+						{{/if}}						
+					</p>
+				</div>
+		  </td>
+           <td>{{item.createTime}}</td>
+           <td>
+					{{if item.canChoose}}
+						<span class="select_button" data-type="product_detail">选取</span>
+					{{else}}
+						进行中
+					{{/if}}					
+		  </td>
+        </tr>
+        {{/each}}
+    </script>
+    <!-- 表单列表引用页面 -->
+	<script id="mask_formList_quote" type="text/html">
+      {{each record as item}}
+         <tr data-id="{{item.weiPageIdStr}}" data-title="{{item.title}}">
+           <td>{{item.title}}</td>
+           <td>{{item.createTime}}</td>
+           <td><span class="select_button" data-type="quote">选取</span></td>
+        </tr>
+     {{/each}}
+ 	</script>
+ 	<!-- 表单列表微页面 -->
+	<script id="mask_formList_weipage" type="text/html">
+      {{each record as item}}
+         <tr data-id="{{item.weiPageIdStr}}" data-title="{{item.title}}">
+           <td>{{item.title}}</td>
+           <td>{{item.createTime}}</td>
+           <td><span class="select_button" data-type="weiPage">选取</span></td>
+        </tr>
+     {{/each}}
+ 	</script>
+
+
+	<!-- 以下是微页面插件模板 -->
+		
+	<!-- 焦点图插件 -->
+	<script type="text/html" id="banner_list_view">
+            <div class="banner_wrap">
+                <ul class="banner_list">
+                    {{each subPlugInList as item}}
+                    		{{include 'banner_list_child_view' item}}
+					{{/each}}
+                </ul>
+            </div>
+	</script>
+	<!-- 焦点图子插件 -->
+	<script type="text/html" id="banner_list_child_view">
+        {{if plugInSelect || fakePlugInSelect}}
+			<li id="{{plugInUuid | parsePlugInUuid}}" data-plugInUuid="{{plugInUuid}}" class="banner_item subPlugIn_wrap {{plugInSelect |parsePlugInSelect}}">
+            		<a draggable="false" href="javascript:;" class="block_link">
+                		<img src="{{showPicUrl | bannerImage}}" alt="" class="item_image" draggable="false">
+            		</a>
+        		</li>
+		{{/if}}
+	</script>
+	<!-- 焦点图插件编辑 -->
+	<script type="text/html" id="banner_edit">
+            <div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+            <h2 class="plugIn_name">图片广告</h2>            
+			<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">多图预览：</p>
+					<div class="input_wrap">	
+						{{each subPlugInList as item}}
+							<div class="subPlugIn_wrap image_wrap float_left" data-plugInUuid="{{item.plugInUuid}}">
+								<div class="image_item {{item.picUrl | uploadComplete}} {{if item.plugInSelect}}current{{/if}}" data-action="true" >
+									<img class="image_view" src="{{item.showPicUrl | bannerImage}}" />
+								</div>
+							</div>
+						{{/each}}
+					</div>
+			</div>	
+	</script>
+	<!-- 焦点图子插件编辑 -->
+	<script type="text/html" id="banner_child_edit">
+		<hr/>
+		<div class="addPlugIn addPlugIn_icon"></div>	
+		<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}" data-subPlugInId="{{plugInCommonIdStr}}"></div>
+		<div class="subPlugIn_option_page">		
+			<div class="yui_form_wrap">
+					<p class="input_lable">选择图片：</p>
+					<div class="input_wrap">						
+						<div class="image_wrap float_left">
+							<div class="upload_image image_item {{picKey | uploadComplete}}" data-action="true" >
+								<img class="image_view" src="{{showPicUrl | uploadImage}}" />
+								<input type="file" name="picKey" class="input_image" />
+							</div>
+						</div>	
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">链接到：</p>
+					<div class="input_wrap">													
+						<div class="form_one">
+							<select class="float_left" name="functionCode" data-redraw-form="true">
+								<option data-link="CUSTOM" value="CUSTOM" {{if linkType == 'CUSTOM'}}selected="selected"{{/if}}>自定义链接</option>
+								<option data-link="MODULE" value="MODULE" {{if linkType == 'MODULE'}}selected="selected"{{/if}}>本页面模块</option>
+								{{each functionList as item}}
+									<option data-link="FUNCTION" value="{{item.functionCode}}" {{if functionCode == item.functionCode}}selected="selected"{{/if}}>{{item.functionName}}</option>
+								{{/each}}						  
+							</select>	
+						</div>
+					</div>
+			</div>	
+			{{if  linkType == 'CUSTOM'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">自定义链接：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="link" placeholder="http://www.bookingtee.com/" value="{{link}}" />	
+						</div>
+					</div>
+				</div>	
+			{{else if linkType == 'MODULE'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="link" placeholder="请输入模块编号" value="{{link}}" />	
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "product_detail"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择商品：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_detail">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_detail">+选择商品</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "weipage"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择微页面：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="weipage">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="weipage">+选择微页面</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "product_category"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择分类：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_category">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_category">+选择分类</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>
+			{{else if functionCode == "product_group"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择分组：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_group">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_group">+选择分组</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{/if}}				
+		</div>
+	</script>	
+	<!-- 文本导航插件 -->
+	<script type="text/html" id="nav_list_view">
+            <div class="nav_wrap">
+                <ul class="nav_list child_list font_14">
+                    {{each subPlugInList as item}}
+                    		{{include 'nav_list_child_view' item}}
+					{{/each}}
+                </ul>
+            </div>
+	</script>
+	<!-- 文本导航子插件 -->
+	<script type="text/html" id="nav_list_child_view">
+        <li id="{{plugInUuid | parsePlugInUuid}}" data-plugInUuid="{{plugInUuid}}" class="nav_item subPlugIn_wrap {{plugInSelect |parsePlugInSelect}}" style="{{navStyle(plugInSelect,btnSelectedColor,btnColor)}}">
+            <a draggable="false" href="javascript:;" class="block_link">{{name | navName}}</a>
+        </li>
+	</script>
+	<!-- 图文导航插件 -->
+	<script type="text/html" id="nav_picture_view">
+            <div class="nav_picture_wrap">
+                <ul class="nav_list child_list font_14">
+                    {{each subPlugInList as item}}
+                    		{{include 'nav_picture_child_view' item}}
+					{{/each}}
+                </ul>
+            </div>
+	</script>
+	<!-- 图文导航内容 -->
+	<script type="text/html" id="nav_picture_child_view">
+		 <li id="{{plugInUuid | parsePlugInUuid}}" data-plugInUuid="{{plugInUuid}}" class="nav_item subPlugIn_wrap {{plugInSelect |parsePlugInSelect}}" >
+            <a draggable="false" href="javascript:;" class="block_link">
+				<div class="nav_picture_page">
+					<img src="{{showPicUrl | navPic}}" alt="" class="item_image" draggable="false" />
+				</div>
+				<p class="nav_picture_text">{{name | navName}}</p>
+			</a>
+        </li>
+	</script>
+	<!-- 导航插件编辑 -->
+	<script type="text/html" id="nav_edit">		
+			<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+            <h2 class="plugIn_name">导航</h2> 
+			<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">导航样式：</p>
+					<div class="input_wrap">						
+						<div class="form_one">
+							<input type="radio" name="showType" value="TEXTNAVI_TXT" data-redraw-form="true" data-deep-operate="true" {{if showType == 'TEXTNAVI_TXT'}}checked="checked"{{/if}} /> 文字  <input type="radio" name="showType" value="TEXTNAVI_PIC" data-redraw-form="true" data-deep-operate="true" {{if showType == 'TEXTNAVI_PIC'}}checked="checked"{{/if}} /> 图标+文字
+						</div>
+					</div>
+			</div>	
+			{{if showType == 'TEXTNAVI_TXT'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">按钮选中颜色:</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="btnSelectedColor" value="{{btnSelectedColor}}" data-deep-operate="true" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{btnSelectedColor}}" value="重置" />
+						</div>
+					</div>
+				</div>	
+				<div class="yui_form_wrap">
+					<p class="input_lable">按钮默认颜色:</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="btnColor" value="{{btnColor}}" data-deep-operate="true" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{btnColor}}" value="重置" />
+						</div>
+					</div>
+				</div>	
+			{{/if}}
+	</script>
+	<!-- 导航子插件编辑 -->
+	<script type="text/html" id="nav_child_edit">
+		<hr/>
+		<div class="addPlugIn addPlugIn_icon"></div>	
+		<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}" data-subPlugInId="{{plugInCommonIdStr}}"></div>
+		<div class="subPlugIn_option_page">
+		{{if showType == 'TEXTNAVI_PIC'}}			
+			<div class="yui_form_wrap">
+					<p class="input_lable">导航图片：</p>
+					<div class="input_wrap">							
+						<div class="image_wrap float_left">
+							<div class="upload_image image_item {{picKey | uploadComplete}}" data-action="true" >
+								<img class="image_view" src="{{showPicUrl | uploadImage}}" />
+								<input type="file" name="picKey" class="input_image" />
+							</div>
+						</div>	
+					</div>
+			</div>	
+		{{/if}}
+
+			<div class="yui_form_wrap">
+					<p class="input_lable">导航名称：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="name" value="{{name}}" placeholder="请输入导航名称" />	
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">链接到：</p>
+					<div class="input_wrap">													
+						<div class="form_one">
+							<select class="float_left" name="functionCode" data-redraw-form="true">
+								<option data-link="CUSTOM" value="CUSTOM" {{if linkType == 'CUSTOM'}}selected="selected"{{/if}}>自定义链接</option>
+								<option data-link="MODULE" value="MODULE" {{if linkType == 'MODULE'}}selected="selected"{{/if}}>本页面模块</option>
+								{{each functionList as item}}
+									<option data-link="FUNCTION" value="{{item.functionCode}}" {{if functionCode == item.functionCode}}selected="selected"{{/if}}>{{item.functionName}}</option>
+								{{/each}}						  
+							</select>	
+						</div>
+					</div>
+			</div>	
+			{{if  linkType == 'CUSTOM'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">自定义链接：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="link" placeholder="http://www.bookingtee.com/" value="{{link}}" />	
+						</div>
+					</div>
+				</div>	
+			{{else if linkType == 'MODULE'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="link" placeholder="请输入模块编号" value="{{link}}" />	
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "product_detail"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择商品：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_detail">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_detail">+选择商品</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "weipage"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择微页面：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="weipage">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="weipage">+选择微页面</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "product_category"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择分类：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_category">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_category">+选择分类</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>		
+			{{else if functionCode == "product_group"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择分组：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_group">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_group">+选择分组</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{/if}}	
+		</div>
+	</script>
+	<!-- 商品公共插件 -->
+	<script type="text/html" id="product_common_view">
+		<div class="product_wrap showType_{{showType}} productShowType_{{productShowType}} productShowNameEnum_{{productShowNameEnum}} productShowPriceEnum_{{productShowPriceEnum}} productShowBuyBtnEnum_{{productShowBuyBtnEnum}} picGap_{{picGap}}">
+                <ul class="child_list product_list clearfix">
+                    {{each subPlugInList as item}}
+                    		{{include 'product_common_child_view' item}}
+					{{/each}}
+                </ul>
+           </div>
+	</script>
+	<!-- 商品公共子插件 -->
+	<script type="text/html" id="product_common_child_view">
+	<li id="{{plugInUuid | parsePlugInUuid}}" data-plugInUuid="{{plugInUuid}}" class="product_item_box subPlugIn_wrap {{plugInSelect | parsePlugInSelect}}">
+		<div class="product_item">
+            <a draggable="false" href="javascript:;" class="block_link" draggable="false">
+                	<div class="item_image_out">	
+					<div class="item_image_wrap">
+                    		<img src="{{showPicUrl | productImage}}" alt="" class="item_image" draggable="false" />
+                   			{{if showProductType== 1}}
+								<div class="item_image_mask"><p class="item_image_mask_text">已下架</p></div>
+							{{else if showProductType== 2}}
+								<div class="item_image_mask"><p class="item_image_mask_text">已售罄</p></div>
+							{{/if}}
+					 		{{if tag}}<div class="product_tag font_14">{{tag}}</div>{{/if}}
+					 		{{if pvuv}}<div class="pv_show font_12}}">{{pvuv}}</div>{{/if}}
+							{{if commissionPrice && commissionPrice > 0}}
+								<div class="commissionPrice">赚￥{{commissionPrice}}</div>
+							{{/if}}
+                		</div>
+				</div>
+                 <div class="item_text_wrap">
+                    <p class="product_name font_13">{{title | productTitle}}</p>
+                    <p class="product_price"><span class="font_13 color_highlight">￥{{price | productPrice}}</span>&nbsp;
+                         {{if originalPrice > 0}}
+                        		<del class="color_remark font_12">￥{{originalPrice | productOriginalPrice}}</del>
+						{{/if}}
+                    </p>                   
+                </div>
+            </a>
+		    <div class="product_button">购买</div>
+		</div>
+     </li>
+	</script>
+	<!-- 商品插件编辑 -->
+	<script type="text/html" id="product_edit">
+        		<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+        		<h2 class="plugIn_name">商品</h2> 
+			<div class="yui_form_wrap">
+					<p class="input_lable big">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	          		
+			<div class="yui_form_wrap">
+					<p class="input_lable big">背景图片：</p>
+					<div class="input_wrap">							
+						<div class="image_wrap float_left">
+							<div class="upload_image image_item {{showPicUrl | uploadComplete}}" data-action="true" >
+								<img class="image_view" src="{{showPicUrl | uploadImage}}" />
+								<input type="file" name="showPicUrl" class="input_image" />
+							</div>
+						</div>	
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable big">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable big">显示类型：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="showType" value="WATERFALL" {{if showType == 'WATERFALL'}}checked="checked"{{/if}} /> 瀑布流  <input type="radio" name="showType" value="LIST" {{if showType == 'LIST'}}checked="checked"{{/if}} /> 列表
+							<input type="radio" name="showType" value="GRID" {{if showType == 'GRID'}}checked="checked"{{/if}} /> 网格  <input type="radio" name="showType" value="BIG" {{if showType == 'BIG'}}checked="checked"{{/if}} /> 大图
+							<input type="radio" name="showType" value="SWAP" {{if showType == 'SWAP'}}checked="checked"{{/if}} /> 滑块
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable big">显示样式：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="productShowType" value="CARD" data-redraw-form="true" {{if productShowType == 'CARD'}}checked="checked"{{/if}} /> 卡片样式  <input type="radio" name="productShowType" value="SIMPLE" data-redraw-form="true" {{if productShowType == 'SIMPLE'}}checked="checked"{{/if}} /> 极简样式
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable big">保留显示间隙：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="picGap" value="RETAIN" {{if picGap == 'RETAIN'}}checked="checked"{{/if}} /> 是  <input type="radio" name="picGap" value="REMOVE" {{if picGap == 'REMOVE'}}checked="checked"{{/if}} /> 否
+						</div>
+					</div>
+			</div>	
+			{{if productShowType == 'CARD'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable big">显示商品名称：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="productShowNameEnum" value="YES" {{if productShowNameEnum == 'YES'}}checked="checked"{{/if}} /> 是  <input type="radio" name="productShowNameEnum" value="NO" {{if productShowNameEnum == 'NO'}}checked="checked"{{/if}} /> 否
+						</div>
+					</div>
+				</div>	
+			{{/if}}
+			<div class="yui_form_wrap">
+					<p class="input_lable big">显示商品价格：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="productShowPriceEnum" value="YES" {{if productShowPriceEnum == 'YES'}}checked="checked"{{/if}} /> 是  <input type="radio" name="productShowPriceEnum" value="NO" {{if productShowPriceEnum == 'NO'}}checked="checked"{{/if}} /> 否
+						</div>
+					</div>
+			</div>	
+			{{if productShowType == 'CARD'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable big">显示购买按钮：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="productShowBuyBtnEnum" value="STYLE_BTN" {{if productShowBuyBtnEnum == 'STYLE_BTN'}}checked="checked"{{/if}} /> 是  <input type="radio" name="productShowBuyBtnEnum" value="NO" {{if productShowBuyBtnEnum == 'NO'}}checked="checked"{{/if}} /> 否
+						</div>
+					</div>
+				</div>	
+			{{/if}}
+			<hr/>
+			<div class="yui_form_wrap">
+					<p class="input_lable big">添加商品：</p>
+					<div class="input_wrap">	
+						{{each subPlugInList as item}}
+							<div class="image_wrap float_left">
+								<i class="delete_image subPlugIn_remove" data-plugInUuid="{{item.plugInUuid}}" data-subPlugInId="{{item.plugInProductIdStr}}"></i>
+								<div class="image_item complete" data-action="true" >
+									<img class="image_view" src="{{item.showPicUrl | productImage}}" />
+								</div>
+							</div>
+						{{/each}}
+							<div class="image_wrap add_product float_left">
+								<div class="image_item complete" data-action="true" >
+									<img class="image_view" src="./assets/images/static/pic_addpicture.png" />
+								</div>
+							</div>
+					</div>
+			</div>							
+	</script>	
+	<!-- 商品分组插件 -->
+<script type="text/html" id="productGrop_view">
+	<div class="productGrop_wrap">
+		<div class="productGrop_wrap_content {{plugInSubType}}">	
+                <ul class="productGrop_list">
+                    {{each subPlugInList as item}}
+                    		{{include 'productGrop_child_view' item}}
+					{{/each}}
+                </ul>
+				{{each subPlugInList as item}}
+                    	{{if item.plugInSelect}}
+						<ul class="productGrop_product_page clearfix {{showType}}">
+							{{include 'empty_product_child_view'}}
+							{{include 'empty_product_child_view'}}
+							{{include 'empty_product_child_view'}}
+							{{include 'empty_product_child_view'}}
+						</ul>
+					{{/if}}
+				{{/each}}
+		</div>
+     </div>
+</script>
+
+<!-- 商品分组子插件 -->
+<script type="text/html" id="productGrop_child_view">
+		<li id="{{plugInUuid | parsePlugInUuid}}" data-plugInUuid="{{plugInUuid}}" class="productGrop_item subPlugIn_wrap {{plugInSelect |parsePlugInSelect}}">
+               <span class="productGrop_name">{{name}}</span>				
+        	</li>
+</script>
+
+<!-- 商品分组插件编辑 -->
+<script type="text/html" id="productGrop_edit">
+		<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+            <h2 class="plugIn_name">商品分组</h2>            
+			<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>				
+			<div class="yui_form_wrap">
+					<p class="input_lable">分组类型：</p>
+					<div class="input_wrap">						
+						<div class="form_one">
+							<input type="radio" name="plugInSubType" value="PRODUCT_GROUP_LEFT" {{if plugInSubType == 'PRODUCT_GROUP_LEFT'}}checked="checked"{{/if}} data-redraw-form="true" /> 左菜单  <input type="radio" name="plugInSubType" value="PRODUCT_GROUP_TOP" {{if plugInSubType == 'PRODUCT_GROUP_TOP'}}checked="checked"{{/if}} data-redraw-form="true" /> 顶部菜单
+						</div>
+					</div>
+			</div>
+			{{if plugInSubType == 'PRODUCT_GROUP_TOP'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">显示样式：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="showType" value="WATERFALL" {{if showType == 'WATERFALL'}}checked="checked"{{/if}} /> 瀑布流  <input type="radio" name="showType" value="LIST" {{if showType == 'LIST'}}checked="checked"{{/if}} /> 列表
+							<input type="radio" name="showType" value="GRID" {{if showType == 'GRID'}}checked="checked"{{/if}} /> 网格  <input type="radio" name="showType" value="BIG" {{if showType == 'BIG'}}checked="checked"{{/if}} /> 大图
+						</div>
+					</div>
+				</div>	
+			{{/if}}
+			<div class="yui_form_wrap">
+					<p class="input_lable">商品分组：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{each subPlugInList as item}}
+								<span class="subPlugIn_wrap search_lable {{if item.plugInSelect}}current{{/if}}" data-plugInUuid="{{item.plugInUuid}}">{{item.buizName}}</span>
+							{{/each}}
+						</div>
+						{{if subPlugInList && subPlugInList.length == 0}}
+							<p class="add_subPlugIn add_group color_highlight">新增分组+</p>
+						{{/if}}
+					</div>
+			</div>	
+	</script>
+
+	<!-- 商品分组子插件编辑 -->
+	<script type="text/html" id="productGrop_child_edit">
+		<hr/>
+		<div class="addPlugIn_icon add_group"></div>
+		<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}" data-subPlugInId="{{plugInCommonIdStr}}"></div>
+		<div class="subPlugIn_option_page">
+			<div class="yui_form_wrap">
+				<p class="input_lable">选择分组：</p>
+				<div class="input_wrap">	
+					<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_group">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_group">+选择分组</span>
+							{{/if}}	
+					</div>
+				</div>
+			</div>	
+			<div class="yui_form_wrap">
+				<p class="input_lable">分组名称：</p>
+				<div class="input_wrap">	
+					<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="name" placeholder="" value="{{name}}" />	
+					</div>
+				</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">显示个数：</p>
+					<div class="input_wrap">					
+						<div class="form_one">
+							<select class="float_left" name="showCount">
+								<option {{if showCount == 4}}selected="selected"{{/if}} value="4">4</option>
+								<option {{if showCount == 6}}selected="selected"{{/if}} value="6">6</option>
+								<option {{if showCount == 8}}selected="selected"{{/if}} value="8">8</option>
+							</select>	
+						</div>
+					</div>
+			</div>	
+		</div>
+	</script>
+	<!-- 商品列表插件 -->
+	<script type="text/html" id="productList_view">
+	<div class="productList_wrap">
+		<div class="productList_wrap_content {{showType}}">	
+                <ul class="productList_list clearfix">
+                    {{include 'empty_product_child_view'}}
+				   {{include 'empty_product_child_view'}}
+				   {{include 'empty_product_child_view'}}
+				   {{include 'empty_product_child_view'}}
+                </ul>
+		</div>
+     </div>
+	</script>
+	<!-- 商品占位插件 -->
+	<script type="text/html" id="empty_product_child_view">
+			<li class="empty_product_item">
+							<div class="empty_product_item_page">
+								<div class="empty_product_image_wrap">
+									<div class="empty_product_image">
+										<img src="./assets/images/static/goods_stream.png" />
+									</div>
+								</div>
+								<div class="empty_product_text_wrap">
+									<p class="product_name">此处显示商品标题</p>
+									<p class="product_price color_highlight">￥99</p>
+								</div>
+								<div class="empty_product_buyBtn">购买</div>
+							</div>
+			</li>
+	</script>
+	<!-- 商品分组插件编辑 -->
+	<script type="text/html" id="productList_edit">
+		<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+            <h2 class="plugIn_name">商品列表</h2>            
+			<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>				
+			<div class="yui_form_wrap">
+					<p class="input_lable">显示样式：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="showType" value="WATERFALL" {{if showType == 'WATERFALL'}}checked="checked"{{/if}} /> 瀑布流  <input type="radio" name="showType" value="LIST" {{if showType == 'LIST'}}checked="checked"{{/if}} /> 列表
+							<input type="radio" name="showType" value="GRID" {{if showType == 'GRID'}}checked="checked"{{/if}} /> 网格  <input type="radio" name="showType" value="BIG" {{if showType == 'BIG'}}checked="checked"{{/if}} /> 大图
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">选择分组：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_group" data-plugIn="plugIn">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_group" data-plugIn="plugIn">+选择分组</span>
+							{{/if}}		
+						</div>
+					</div>
+			</div>		
+			<div class="yui_form_wrap">
+					<p class="input_lable">显示个数：</p>
+					<div class="input_wrap">					
+						<div class="form_one">
+							<select class="float_left" name="showCount">
+								<option {{if showCount == 4}}selected="selected"{{/if}} value="4">4</option>
+								<option {{if showCount == 6}}selected="selected"{{/if}} value="6">6</option>
+								<option {{if showCount == 8}}selected="selected"{{/if}} value="8">8</option>
+							</select>	
+						</div>
+					</div>
+			</div>		
+		</script>
+		<!-- 引用模块插件 -->
+		<script type="text/html" id="quote_view">
+            <div class="quote">			
+				<p style="padding:24px;font-size:18px">点击编辑[引用模块]</p>           
+            </div>
+		</script>
+		<!-- 引用模块插件编辑 -->
+		<script type="text/html" id="quote_edit">	
+			<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+            <h2 class="plugIn_name">引用模块</h2> 
+			<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+				<div class="quote_page">
+					{{if relatedWeiPageIdStr}}
+						<span class="title_btn">{{weiPageTitle(relatedWeiPageTitle,relatedWeiPageInfo)}}</span>								
+						<span class="option_blue_btn" data-type="quote" data-plugIn="plugIn">修改</span>
+					{{else}}
+						<span class="option_blue_btn" data-type="quote" data-plugIn="plugIn">+引用模块</span>
+					{{/if}}					
+				</div>
+			</div>
+		</script>
+		<!-- 富文本插件 -->
+	<script type="text/html" id="RTE_view">
+            <div class="RTE_wrap">
+                {{#txtHtml}}
+            </div>
+	</script>
+	<!-- 富文本插件编辑 -->
+	<script type="text/html" id="RTE_edit">
+			<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+            <h2 class="plugIn_name">富文本</h2> 
+			<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>				
+			<div class="yui_form_wrap">
+					<p class="input_lable">是否全屏：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="fullscreen" value="YES" {{if fullscreen == 'YES'}}checked="checked"{{/if}} /> 是
+							<input type="radio" name="fullscreen" value="NO" {{if fullscreen == 'NO'}}checked="checked"{{/if}} /> 否
+						</div>
+					</div>
+			</div>	
+		</script>
+		<!-- 搜索插件 -->
+	<script type="text/html" id="search_view">
+            <div class="search_wrap">
+				<div class="search_box font_10">
+					<span>搜索</span>
+				</div>				
+			</div>
+	</script>
+	<!-- 搜索子插件 -->
+	<script type="text/html" id="search_child_view">
+		<span id="{{plugInUuid | parsePlugInUuid}}" data-plugInUuid="{{plugInUuid}}" class="search_item subPlugIn_wrap {{plugInSelect |parsePlugInSelect}}">{{name}}</span>
+	</script>
+	<!-- 搜索插件编辑 -->
+	<script type="text/html" id="search_edit">
+			<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+            <h2 class="plugIn_name">搜索</h2> 
+			<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">搜索关键词：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{each subPlugInList as item}}
+								<span class="subPlugIn_wrap search_lable {{if item.plugInSelect}}current{{/if}}" data-plugInUuid="{{item.plugInUuid}}">{{item.name}}</span>
+							{{/each}}
+						</div>
+					</div>
+			</div>	
+	</script>
+	<!-- 搜索子插件编辑 -->
+	<script type="text/html" id="search_child_edit">
+		<hr/>
+		<div class="addPlugIn addPlugIn_icon"></div>	
+		<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}" data-subPlugInId="{{plugInCommonIdStr}}"></div>
+		<div class="subPlugIn_option_page">			
+			<div class="yui_form_wrap">
+					<p class="input_lable">热搜关键词：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<p><input type="text" data-check="notEmpty" class="input_text float_left size_l_m" name="name" value="{{name}}" data-redraw-form="true" placeholder="请输入热搜关键词" /></p>	
+							<p><span class="input_tips float_left" data-check="notEmpty">关键词不能为空</span></p>
+						</div>
+					</div>
+			</div>	
+		</div>
+	</script>
+	<!-- 橱窗插件 -->
+	<script type="text/html" id="showcase_view">
+		<div class="showcase_wrap {{picGap}}">
+             {{if name}}
+				<div class="wrap_head">{{name}}</div>
+			{{/if}}
+			<ul class="child_list showcase_list {{showType}} clearfix">
+					{{each subPlugInList as item}}
+                    		{{include 'showcase_child_view' item}}
+					{{/each}}
+                </ul>
+			{{if remark}}
+				<div class="wrap_foot">{{remark}}</div>	
+			{{/if}}
+          </div>
+	</script>
+	<!-- 橱窗子插件 -->
+	<script type="text/html" id="showcase_child_view">
+		<li id="{{plugInUuid | parsePlugInUuid}}" data-plugInUuid="{{plugInUuid}}" class="showcase_item subPlugIn_wrap {{plugInSelect |parsePlugInSelect}}" >			
+			<div class="item_text_page">
+				<div class="item_text_wrap">
+					<p class="item_text_title font_16">{{name | showcaseName}}</p>
+					<p class="item_text_subTitle font_14 color_warn">{{subName | showcaseSubName}}</p>
+				</div>
+			</div>
+			<div class="item_image_page">
+				<div class="item_image_wrap">
+					<img class="item_image" src="{{showPicUrl | bannerImage}}" draggable="false" />
+				</div>
+			</div>
+		</li>
+	</script>
+	<!-- 橱窗插件编辑 -->
+	<script type="text/html" id="showcase_edit">
+			<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+        		<h2 class="plugIn_name">橱窗</h2> 
+			<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	 
+			<div class="yui_form_wrap">
+					<p class="input_lable">橱窗标题：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="name" value="{{name}}" placeholder="请输入标题" />	
+						</div>
+					</div>
+			</div>		         		
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景图片：</p>
+					<div class="input_wrap">							
+						<div class="image_wrap float_left">
+							<div class="upload_image image_item {{showPicUrl | uploadComplete}}" data-action="true" >
+								<img class="image_view" src="{{showPicUrl | uploadImage}}" />
+								<input type="file" name="showPicUrl" class="input_image" />
+							</div>
+						</div>	
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">显示样式：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="showType" value="SHOWCASE_1" {{if showType == 'SHOWCASE_1'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true" /> 样式一
+							<input type="radio" name="showType" value="SHOWCASE_2" {{if showType == 'SHOWCASE_2'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true"  /> 样式二
+							<input type="radio" name="showType" value="SHOWCASE_3" {{if showType == 'SHOWCASE_3'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true"  /> 样式三
+							<input type="radio" name="showType" value="SHOWCASE_4" {{if showType == 'SHOWCASE_4'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true"  /> 样式四
+							<input type="radio" name="showType" value="SHOWCASE_5" {{if showType == 'SHOWCASE_5'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true"  /> 样式五
+							<input type="radio" name="showType" value="SHOWCASE_6" {{if showType == 'SHOWCASE_6'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true"  /> 样式六
+							<input type="radio" name="showType" value="SHOWCASE_7" {{if showType == 'SHOWCASE_7'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true"  /> 样式七
+							<input type="radio" name="showType" value="SHOWCASE_8" {{if showType == 'SHOWCASE_8'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true"  /> 样式八						
+						</div>
+					</div>
+			</div>
+			<div class="yui_form_wrap">
+					<p class="input_lable">保留间隙：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="picGap" value="RETAIN" {{if picGap == 'RETAIN'}}checked="checked"{{/if}} /> 是
+							<input type="radio" name="picGap" value="REMOVE" {{if picGap == 'REMOVE'}}checked="checked"{{/if}} /> 否
+						</div>
+					</div>
+			</div>				
+			<div class="yui_form_wrap">
+					<p class="input_lable">橱窗说明：</p>
+					<div class="input_wrap">							
+						<div class="form_one">															
+							<textarea class="float_left size_s" name="remark" placeholder="请输入说明">{{remark}}</textarea>
+						</div>
+					</div>
+			</div>	
+	</script>
+	<!-- 橱窗子插件编辑 -->
+	<script type="text/html" id="showcase_child_edit">
+		<hr/>
+		<div class="subPlugIn_option_page">
+			<div class="yui_form_wrap">
+					<p class="input_lable">链接到：</p>
+					<div class="input_wrap">													
+						<div class="form_one">
+							<select class="float_left" name="functionCode" data-redraw-form="true">
+								<option data-link="CUSTOM" value="CUSTOM" {{if linkType == 'CUSTOM'}}selected="selected"{{/if}}>自定义链接</option>
+								<option data-link="MODULE" value="MODULE" {{if linkType == 'MODULE'}}selected="selected"{{/if}}>本页面模块</option>
+								{{each functionList as item}}
+									<option data-link="FUNCTION" value="{{item.functionCode}}" {{if functionCode == item.functionCode}}selected="selected"{{/if}}>{{item.functionName}}</option>
+								{{/each}}						  
+							</select>	
+						</div>
+					</div>
+			</div>	
+			{{if  linkType == 'CUSTOM'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">自定义链接：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="link" placeholder="http://www.bookingtee.com/" value="{{link}}" />	
+						</div>
+					</div>
+				</div>	
+			{{else if linkType == 'MODULE'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="link" placeholder="请输入模块编号" value="{{link}}" />	
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "product_detail"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择商品：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_detail">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_detail">+选择商品</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "weipage"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择微页面：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="weipage">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="weipage">+选择微页面</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "product_category"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择分类：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_category">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_category">+选择分类</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "product_group"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择分组：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_group">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_group">+选择分组</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{/if}}			
+			<div class="yui_form_wrap">
+					<p class="input_lable">选择图片：</p>
+					<div class="input_wrap">						
+						<div class="image_wrap float_left">
+							<div class="upload_image image_item {{picKey | uploadComplete}}" data-action="true" >
+								<img class="image_view" src="{{showPicUrl | uploadImage}}" />
+								<input type="file" name="picKey" class="input_image" />
+							</div>
+						</div>	
+					</div>
+			</div>	
+			{{if showType == 'SHOWCASE_7' || showType == 'SHOWCASE_8'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">标题：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="name" value="{{name}}" placeholder="请输入标题" />	
+						</div>
+					</div>
+				</div>		
+				<div class="yui_form_wrap">
+					<p class="input_lable">副标题：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="subName" value="{{subName}}" placeholder="请输入副标题" />	
+						</div>
+					</div>
+				</div>	
+			{{/if}}
+		</div>
+	</script>
+	<!-- 辅助空白插件 -->
+	<script type="text/html" id="space_view">
+            <div class="space_wrap" style="height:{{height}}px"></div>
+	</script>
+	<!-- 辅助空白插件编辑 -->
+	<script type="text/html" id="space_edit">
+			<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+            <h2 class="plugIn_name">辅助空白</h2> 
+			<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">高度：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="range" name="height" max="100" min="20" value="{{height}}" data-redraw-form="true"  /><span class="range_text">{{height}}PX</span>
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>	
+	</script>
+	<!-- 微页面编辑 -->
+	<script type="text/html" id="weiPage_edit">
+            <h2 class="plugIn_name">微页面标题</h2>           
+			<div class="yui_form_wrap">
+					<p class="input_lable">封面图片：</p>
+					<div class="input_wrap">							
+						<div class="image_wrap float_left">
+							<div class="upload_image image_item {{picUrl | uploadComplete}}" data-action="true" >
+								<img class="image_view" src="{{picUrl | uploadImage}}" />
+								<input type="file" name="picUrl" class="input_image" />
+							</div>
+						</div>	
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">页面名称：</p>
+					<div class="input_wrap">						
+						<div class="form_one">
+							<p><input type="text" data-check="notEmpty" class="input_text float_left size_l_m" name="title" value="{{title}}" placeholder="请输入微页面标题" /></p>
+							<p><span class="input_tips float_left" data-check="notEmpty">微页面标题不能为空</span></p>
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">页面描述：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="descr" value="{{descr}}" placeholder="用户通过微信分享给好友时，会自动显示页面描述" />	
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">备注：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="remark" value="{{remark}}" placeholder="备注内容不会在前端显示" />	
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>	
+ 		</script>
+		<!-- 插件公共包装 -->
+		<script type="text/html" id="plugIn_common_page">
+			<div id="{{plugInUuid | parsePlugInUuid}}" data-plugInUuid="{{plugInUuid}}" class="plugIn_wrap {{plugInSelect |parsePlugInSelect}}" style="background-color:{{backgroundColor}};background-image:url({{showbgPicUrl}})">
+				{{#plugInHtml}}
+			</div>
+		</script>
+
+		<script>
+			//微页面插件声明
+			var weiPage = WeiPage();	
+		
+			var plugInFormCheck = FormCheck({checkForm:"#plugIn_option_form"});
+			var subPlugInFormCheck = FormCheck({checkForm:"#subPlugIn_option_form"});
+			
+			$(function(){
+					weiPageAction.initWeipage();	
+				
+					$("#saveBtn").click(function(){
+							if(!plugInFormCheck.doCheck() || !subPlugInFormCheck.doCheck()){
+								return;
+							}
+									
+							var weiPageData = weiPage.exportWeipage();
+							console.log(weiPageData);
+							alert("数据已经输出到控制台，请查看");
+					});
+			});	
+		</script>	
+		
+</body>
+</html>

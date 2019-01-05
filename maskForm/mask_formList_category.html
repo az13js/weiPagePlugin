@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<!-- 表单列表分类 -->
+	<script id="mask_formList_category" type="text/html">
+      {{each list as item}}
+        <tr data-id="{{item.categoryId}}" data-title="{{item.categoryName}}">
+           <td>{{item.categoryName}}</td>
+           <td></td>
+           <td><span class="select_button" data-type="product_category">选取</span></td>
+        </tr>
+        {{/each}}
+	</script>
+</body>
+</html>

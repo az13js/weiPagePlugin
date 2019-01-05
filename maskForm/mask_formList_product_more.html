@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<!-- 表单列表商品 -->
+	<script id="mask_formList_product_more" type="text/html">
+        {{each record as item}}
+        <tr data-id="{{item.productId}}" data-picKey="{{item.picKey}}" data-picUrl="{{item.picUrl}}" data-title="{{item.productName}}" data-originalPrice="{{item.originalPrice}}" data-price="{{item.sellingPrice}}">
+           <td>
+				<div class="image_wrap float_left">
+                   		<img src="{{item.picUrl}}?x-oss-process=image/resize,m_pad,h_480,w_480,color_FFFFFF" alt="" class="image">                  			
+                 </div>
+				<div class="float_left" style="text-align:left;margin-left: 10px;max-width: 300px">
+					<p>{{item.productName}}</p>
+					<p>
+						<span style="color:#d0021b;margin-right:10px">￥{{item.sellingPrice}}</span>
+						{{if item.originalPrice > 0}}
+							<del style="color:#999">￥{{item.originalPrice}}</del>
+						{{/if}}						
+					</p>
+				</div>
+		  </td>
+           <td>{{item.createTime}}</td>
+           <td>
+				<span class="product_checked_button checked_button">选取</span>
+				<span class="product_cancel_button cancel_button">取消</span>		
+		  </td>
+        </tr>
+        {{/each}}
+	</script>
+</body>
+</html>

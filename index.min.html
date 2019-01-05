@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link type="text/css" rel="stylesheet" href="./assets/css/reset.css">
+<link type="text/css" rel="stylesheet" href="./assets/css/yui.css">
+<link type="text/css" rel="stylesheet" href="./assets/css/maskTab.css">
+
+<link type="text/css" rel="stylesheet" href="./view/weiPage/weiPage.css">
+<link type="text/css" rel="stylesheet" href="./view/product/product.css">
+<link type="text/css" rel="stylesheet" href="./view/banner/banner.css">
+<link type="text/css" rel="stylesheet" href="./view/nav/nav.css">
+<link type="text/css" rel="stylesheet" href="./view/search/search.css">
+<link type="text/css" rel="stylesheet" href="./view/richtext/richtext.css">
+<link type="text/css" rel="stylesheet" href="./view/showcase/showcase.css">
+<link type="text/css" rel="stylesheet" href="./view/productGroup/productGroup.css">
+<link type="text/css" rel="stylesheet" href="./view/productList/productList.css">
+
+<script type="text/javascript" src="./assets/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="./assets/js/template.js"></script>
+<script type="text/javascript" src="./assets/js/basic.js"></script>
+<script type="text/javascript" src="./assets/js/formCheck.js"></script>
+<script type="text/javascript" src="./assets/js/maskTabDialog.js"></script>
+<script type="text/javascript" src="./assets/js/pageTurning.js"></script>
+<script type="text/javascript" src="./assets/js/dataEngine.js"></script>
+<script type="text/javascript" src="./assets/js/weiPageTemplateHelper.js"></script>
+
+<script type="text/javascript" src="./model/weiPageModel.js"></script>
+<script type="text/javascript" src="./config/weiPageConfig.js"></script>
+<script type="text/javascript" src="./config/otherConfig.js"></script>
+<script type="text/javascript" src="./controler/weiPageService.js"></script>
+<script type="text/javascript" src="./controler/weiPageViewAction.js"></script>
+<script type="text/javascript" src="./controler/weiPageAction.js"></script>
+<script type="text/javascript" src="./controler/weiPageDropAction.js"></script>
+<script type="text/javascript" src="./controler/weiPageMaskDialogAction.js"></script>
+</head>
+<body class="yui">
+			
+		<div class="weipage_page">
+				<div class="model_nav_wrap">
+			            <h2 class="title">添加内容</h2>
+			            <ul class="weipage_nav_list">
+			                <li class="orange" data-plugIntype="TEXTNAVI">导航</li>
+			                <li class="blue" data-plugIntype="RICHTEXT">富文本</li>
+			                <li class="green" data-plugIntype="BLANK">辅助空白</li>
+			                <li class="red" data-plugIntype="BANNER">图片广告</li>
+			                <li class="purple" data-plugIntype="SHOP">商品</li>
+			                <li class="pink" data-plugIntype="RELATED">引用模块</li>
+			                <li class="mazarine" data-plugIntype="SEARCH">搜索</li>
+			                <li class="yellow" data-plugIntype="SHOWCASE">橱窗</li>
+			                <li class="white" data-plugIntype="PRODUCT_GROUP">商品分组</li>
+			                <li class="gray" data-plugIntype="PRODUCT_LIST">商品列表</li>
+			            </ul>
+			        </div>
+			
+					<div class="yui_mobile">
+						<div class="yui_mobile_head">
+							<h1>页面标题</h1>
+						</div>
+						<div id="mobilePage" class="yui_mobile_body">
+							
+						</div>
+					</div>
+					
+					<div class="edit_page" id="plugIn_edit_page">
+						<form id="plugIn_option_form" class="edit_form">
+						</form>
+						<form id="subPlugIn_option_form" class="edit_form">
+						</form>
+						<!-- 富文本编辑器 -->
+			            <div id="edit_RTE_wrap" class="edit_RTE_wrap">
+			                <script id="edit_RTE" type="text/plain" style="width:330px;height:300px;"></script>
+			            </div>
+						<div class="to_left_arrow"></div>
+					</div>
+			</div>
+			
+			<!-- 弹框表格 -->
+			<div class="mask_tab_wrap">
+					<div class="back_black"></div>
+					<div class="tab_outer_page">
+						<div class="tab_content" id="mask_tab_wrap_content">
+					
+						</div>
+					</div>
+			</div>
+		
+		<div class="weipage_foot_operate">
+				<div class="yui_btn btn_size_l btn_confirm save_btn" id="saveBtn">保存</div>
+		</div>
+				
+		<!-- 插件模板加载 -->
+		<script>
+			$(function(){
+				var includeTemplate = $(".includeTemplate");
+				var loadTemplateIndex = 0;
+				for(var i = 0;i < includeTemplate.length;i++){
+					var url = includeTemplate.eq(i).attr("data-url");
+					includeTemplate.eq(i).load(url,function(){
+						loadTemplateIndex ++;
+						if(loadTemplateIndex == includeTemplate.length){
+							//等全部模板加载完再初始化微页面
+							weiPageAction.initWeipage();
+						}
+					});
+				}
+			})
+		</script>
+		
+		<!-- 弹框部分 -->
+		<div class="includeTemplate" data-url="./maskForm/pageTurning.html"></div>
+		<div class="includeTemplate" data-url="./maskForm/mask_common_formList_confirm.html"></div>
+		<div class="includeTemplate" data-url="./maskForm/mask_common_formList.html"></div>
+		<div class="includeTemplate" data-url="./maskForm/mask_formList_head.html"></div>
+		<div class="includeTemplate" data-url="./maskForm/mask_formList_category.html"></div>
+		<div class="includeTemplate" data-url="./maskForm/mask_formList_group_more.html"></div>
+		<div class="includeTemplate" data-url="./maskForm/mask_formList_group.html"></div>		
+		<div class="includeTemplate" data-url="./maskForm/mask_formList_product_more.html"></div>
+		<div class="includeTemplate" data-url="./maskForm/mask_formList_product.html"></div>
+		<div class="includeTemplate" data-url="./maskForm/mask_formList_quote.html"></div>
+		<div class="includeTemplate" data-url="./maskForm/mask_formList_weipage.html"></div>	
+		
+		<!-- 插件部分 -->
+		<div class="includeTemplate" data-url="./view/nav/nav.html"></div>
+		<div class="includeTemplate" data-url="./view/banner/banner.html"></div>
+		<div class="includeTemplate" data-url="./view/product/product.html"></div>
+		<div class="includeTemplate" data-url="./view/productGroup/productGroup.html"></div>
+		<div class="includeTemplate" data-url="./view/productList/productList.html"></div>
+		<div class="includeTemplate" data-url="./view/quote/quote.html"></div>
+		<div class="includeTemplate" data-url="./view/richtext/richtext.html"></div>
+		<div class="includeTemplate" data-url="./view/search/search.html"></div>
+		<div class="includeTemplate" data-url="./view/showcase/showcase.html"></div>
+		<div class="includeTemplate" data-url="./view/space/space.html"></div>
+		<div class="includeTemplate" data-url="./view/weiPage/weiPage.html"></div>
+		
+		<script>
+			//微页面插件声明
+			var weiPage = WeiPage();	
+		
+			var plugInFormCheck = FormCheck({checkForm:"#plugIn_option_form"});
+			var subPlugInFormCheck = FormCheck({checkForm:"#subPlugIn_option_form"});
+			
+			$(function(){
+					$("#saveBtn").click(function(){
+							if(!plugInFormCheck.doCheck() || !subPlugInFormCheck.doCheck()){
+								return;
+							}
+									
+							var weiPageData = weiPage.exportWeipage();
+							console.log(weiPageData);
+							alert("数据已经输出到控制台，请查看");
+					});
+			});	
+		</script>	
+		
+</body>
+</html>

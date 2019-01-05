@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<!-- 商品公共插件 -->
+	<script type="text/html" id="product_common_view">
+		<div class="product_wrap showType_{{showType}} productShowType_{{productShowType}} productShowNameEnum_{{productShowNameEnum}} productShowPriceEnum_{{productShowPriceEnum}} productShowBuyBtnEnum_{{productShowBuyBtnEnum}} picGap_{{picGap}}">
+                <ul class="child_list product_list clearfix">
+                    {{each subPlugInList as item}}
+                    		{{include 'product_common_child_view' item}}
+					{{/each}}
+                </ul>
+           </div>
+	</script>
+	<!-- 商品公共子插件 -->
+	<script type="text/html" id="product_common_child_view">
+	<li id="{{plugInUuid | parsePlugInUuid}}" data-plugInUuid="{{plugInUuid}}" class="product_item_box subPlugIn_wrap {{plugInSelect | parsePlugInSelect}}">
+		<div class="product_item">
+            <a draggable="false" href="javascript:;" class="block_link" draggable="false">
+                	<div class="item_image_out">	
+					<div class="item_image_wrap">
+                    		<img src="{{showPicUrl | productImage}}" alt="" class="item_image" draggable="false" />
+                   			{{if showProductType== 1}}
+								<div class="item_image_mask"><p class="item_image_mask_text">已下架</p></div>
+							{{else if showProductType== 2}}
+								<div class="item_image_mask"><p class="item_image_mask_text">已售罄</p></div>
+							{{/if}}
+					 		{{if tag}}<div class="product_tag font_14">{{tag}}</div>{{/if}}
+					 		{{if pvuv}}<div class="pv_show font_12}}">{{pvuv}}</div>{{/if}}
+							{{if commissionPrice && commissionPrice > 0}}
+								<div class="commissionPrice">赚￥{{commissionPrice}}</div>
+							{{/if}}
+                		</div>
+				</div>
+                 <div class="item_text_wrap">
+                    <p class="product_name font_13">{{title | productTitle}}</p>
+                    <p class="product_price"><span class="font_13 color_highlight">￥{{price | productPrice}}</span>&nbsp;
+                         {{if originalPrice > 0}}
+                        		<del class="color_remark font_12">￥{{originalPrice | productOriginalPrice}}</del>
+						{{/if}}
+                    </p>                   
+                </div>
+            </a>
+		    <div class="product_button">购买</div>
+		</div>
+     </li>
+	</script>
+	<!-- 商品插件编辑 -->
+	<script type="text/html" id="product_edit">
+        		<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+        		<h2 class="plugIn_name">商品</h2> 
+			<div class="yui_form_wrap">
+					<p class="input_lable big">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	          		
+			<div class="yui_form_wrap">
+					<p class="input_lable big">背景图片：</p>
+					<div class="input_wrap">							
+						<div class="image_wrap float_left">
+							<div class="upload_image image_item {{showPicUrl | uploadComplete}}" data-action="true" >
+								<img class="image_view" src="{{showPicUrl | uploadImage}}" />
+								<input type="file" name="showPicUrl" class="input_image" />
+							</div>
+						</div>	
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable big">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable big">显示类型：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="showType" value="WATERFALL" {{if showType == 'WATERFALL'}}checked="checked"{{/if}} /> 瀑布流  <input type="radio" name="showType" value="LIST" {{if showType == 'LIST'}}checked="checked"{{/if}} /> 列表
+							<input type="radio" name="showType" value="GRID" {{if showType == 'GRID'}}checked="checked"{{/if}} /> 网格  <input type="radio" name="showType" value="BIG" {{if showType == 'BIG'}}checked="checked"{{/if}} /> 大图
+							<input type="radio" name="showType" value="SWAP" {{if showType == 'SWAP'}}checked="checked"{{/if}} /> 滑块
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable big">显示样式：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="productShowType" value="CARD" data-redraw-form="true" {{if productShowType == 'CARD'}}checked="checked"{{/if}} /> 卡片样式  <input type="radio" name="productShowType" value="SIMPLE" data-redraw-form="true" {{if productShowType == 'SIMPLE'}}checked="checked"{{/if}} /> 极简样式
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable big">保留显示间隙：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="picGap" value="RETAIN" {{if picGap == 'RETAIN'}}checked="checked"{{/if}} /> 是  <input type="radio" name="picGap" value="REMOVE" {{if picGap == 'REMOVE'}}checked="checked"{{/if}} /> 否
+						</div>
+					</div>
+			</div>	
+			{{if productShowType == 'CARD'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable big">显示商品名称：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="productShowNameEnum" value="YES" {{if productShowNameEnum == 'YES'}}checked="checked"{{/if}} /> 是  <input type="radio" name="productShowNameEnum" value="NO" {{if productShowNameEnum == 'NO'}}checked="checked"{{/if}} /> 否
+						</div>
+					</div>
+				</div>	
+			{{/if}}
+			<div class="yui_form_wrap">
+					<p class="input_lable big">显示商品价格：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="productShowPriceEnum" value="YES" {{if productShowPriceEnum == 'YES'}}checked="checked"{{/if}} /> 是  <input type="radio" name="productShowPriceEnum" value="NO" {{if productShowPriceEnum == 'NO'}}checked="checked"{{/if}} /> 否
+						</div>
+					</div>
+			</div>	
+			{{if productShowType == 'CARD'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable big">显示购买按钮：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="productShowBuyBtnEnum" value="STYLE_BTN" {{if productShowBuyBtnEnum == 'STYLE_BTN'}}checked="checked"{{/if}} /> 是  <input type="radio" name="productShowBuyBtnEnum" value="NO" {{if productShowBuyBtnEnum == 'NO'}}checked="checked"{{/if}} /> 否
+						</div>
+					</div>
+				</div>	
+			{{/if}}
+			<hr/>
+			<div class="yui_form_wrap">
+					<p class="input_lable big">添加商品：</p>
+					<div class="input_wrap">	
+						{{each subPlugInList as item}}
+							<div class="image_wrap float_left">
+								<i class="delete_image subPlugIn_remove" data-plugInUuid="{{item.plugInUuid}}" data-subPlugInId="{{item.plugInProductIdStr}}"></i>
+								<div class="image_item complete" data-action="true" >
+									<img class="image_view" src="{{item.showPicUrl | productImage}}" />
+								</div>
+							</div>
+						{{/each}}
+							<div class="image_wrap add_product float_left">
+								<div class="image_item complete" data-action="true" >
+									<img class="image_view" src="./assets/images/static/pic_addpicture.png" />
+								</div>
+							</div>
+					</div>
+			</div>							
+	</script>
+</body>
+</html>

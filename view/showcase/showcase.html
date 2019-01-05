@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<!-- 橱窗插件 -->
+<script type="text/html" id="showcase_view">
+		<div class="showcase_wrap {{picGap}}">
+             {{if name}}
+				<div class="wrap_head">{{name}}</div>
+			{{/if}}
+			<ul class="child_list showcase_list {{showType}} clearfix">
+					{{each subPlugInList as item}}
+                    		{{include 'showcase_child_view' item}}
+					{{/each}}
+                </ul>
+			{{if remark}}
+				<div class="wrap_foot">{{remark}}</div>	
+			{{/if}}
+          </div>
+</script>
+
+<!-- 橱窗子插件 -->
+<script type="text/html" id="showcase_child_view">
+		<li id="{{plugInUuid | parsePlugInUuid}}" data-plugInUuid="{{plugInUuid}}" class="showcase_item subPlugIn_wrap {{plugInSelect |parsePlugInSelect}}" >			
+			<div class="item_text_page">
+				<div class="item_text_wrap">
+					<p class="item_text_title font_16">{{name | showcaseName}}</p>
+					<p class="item_text_subTitle font_14 color_warn">{{subName | showcaseSubName}}</p>
+				</div>
+			</div>
+			<div class="item_image_page">
+				<div class="item_image_wrap">
+					<img class="item_image" src="{{showPicUrl | bannerImage}}" draggable="false" />
+				</div>
+			</div>
+		</li>
+</script>
+
+<!-- 橱窗插件编辑 -->
+<script type="text/html" id="showcase_edit">
+			<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+        		<h2 class="plugIn_name">橱窗</h2> 
+			<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	 
+			<div class="yui_form_wrap">
+					<p class="input_lable">橱窗标题：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="name" value="{{name}}" placeholder="请输入标题" />	
+						</div>
+					</div>
+			</div>		         		
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景图片：</p>
+					<div class="input_wrap">							
+						<div class="image_wrap float_left">
+							<div class="upload_image image_item {{showPicUrl | uploadComplete}}" data-action="true" >
+								<img class="image_view" src="{{showPicUrl | uploadImage}}" />
+								<input type="file" name="showPicUrl" class="input_image" />
+							</div>
+						</div>	
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">显示样式：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="showType" value="SHOWCASE_1" {{if showType == 'SHOWCASE_1'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true" /> 样式一
+							<input type="radio" name="showType" value="SHOWCASE_2" {{if showType == 'SHOWCASE_2'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true"  /> 样式二
+							<input type="radio" name="showType" value="SHOWCASE_3" {{if showType == 'SHOWCASE_3'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true"  /> 样式三
+							<input type="radio" name="showType" value="SHOWCASE_4" {{if showType == 'SHOWCASE_4'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true"  /> 样式四
+							<input type="radio" name="showType" value="SHOWCASE_5" {{if showType == 'SHOWCASE_5'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true"  /> 样式五
+							<input type="radio" name="showType" value="SHOWCASE_6" {{if showType == 'SHOWCASE_6'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true"  /> 样式六
+							<input type="radio" name="showType" value="SHOWCASE_7" {{if showType == 'SHOWCASE_7'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true"  /> 样式七
+							<input type="radio" name="showType" value="SHOWCASE_8" {{if showType == 'SHOWCASE_8'}}checked="checked"{{/if}} data-deep-operate="true" data-redraw-form="true"  /> 样式八						
+						</div>
+					</div>
+			</div>
+			<div class="yui_form_wrap">
+					<p class="input_lable">保留间隙：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="picGap" value="RETAIN" {{if picGap == 'RETAIN'}}checked="checked"{{/if}} /> 是
+							<input type="radio" name="picGap" value="REMOVE" {{if picGap == 'REMOVE'}}checked="checked"{{/if}} /> 否
+						</div>
+					</div>
+			</div>				
+			<div class="yui_form_wrap">
+					<p class="input_lable">橱窗说明：</p>
+					<div class="input_wrap">							
+						<div class="form_one">															
+							<textarea class="float_left size_s" name="remark" placeholder="请输入说明">{{remark}}</textarea>
+						</div>
+					</div>
+			</div>	
+</script>
+
+<!-- 橱窗子插件编辑 -->
+<script type="text/html" id="showcase_child_edit">
+		<hr/>
+		<div class="subPlugIn_option_page">
+			<div class="yui_form_wrap">
+					<p class="input_lable">链接到：</p>
+					<div class="input_wrap">													
+						<div class="form_one">
+							<select class="float_left" name="functionCode" data-redraw-form="true">
+								<option data-link="CUSTOM" value="CUSTOM" {{if linkType == 'CUSTOM'}}selected="selected"{{/if}}>自定义链接</option>
+								<option data-link="MODULE" value="MODULE" {{if linkType == 'MODULE'}}selected="selected"{{/if}}>本页面模块</option>
+								{{each functionList as item}}
+									<option data-link="FUNCTION" value="{{item.functionCode}}" {{if functionCode == item.functionCode}}selected="selected"{{/if}}>{{item.functionName}}</option>
+								{{/each}}						  
+							</select>	
+						</div>
+					</div>
+			</div>	
+			{{if  linkType == 'CUSTOM'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">自定义链接：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="link" placeholder="http://www.bookingtee.com/" value="{{link}}" />	
+						</div>
+					</div>
+				</div>	
+			{{else if linkType == 'MODULE'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="link" placeholder="请输入模块编号" value="{{link}}" />	
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "product_detail"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择商品：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_detail">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_detail">+选择商品</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "weipage"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择微页面：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="weipage">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="weipage">+选择微页面</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "product_category"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择分类：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_category">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_category">+选择分类</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "product_group"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择分组：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_group">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_group">+选择分组</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{/if}}			
+			<div class="yui_form_wrap">
+					<p class="input_lable">选择图片：</p>
+					<div class="input_wrap">						
+						<div class="image_wrap float_left">
+							<div class="upload_image image_item {{picKey | uploadComplete}}" data-action="true" >
+								<img class="image_view" src="{{showPicUrl | uploadImage}}" />
+								<input type="file" name="picKey" class="input_image" />
+							</div>
+						</div>	
+					</div>
+			</div>	
+			{{if showType == 'SHOWCASE_7' || showType == 'SHOWCASE_8'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">标题：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="name" value="{{name}}" placeholder="请输入标题" />	
+						</div>
+					</div>
+				</div>		
+				<div class="yui_form_wrap">
+					<p class="input_lable">副标题：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="subName" value="{{subName}}" placeholder="请输入副标题" />	
+						</div>
+					</div>
+				</div>	
+			{{/if}}
+		</div>
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<!-- 表单列表商品 -->
+	<script id="mask_formList_group_more" type="text/html">
+   	{{each record as item}}
+        <tr data-id="{{item.groupIdStr}}" data-title="{{item.name}}">
+           <td>{{item.name}}</td>
+           <td>{{item.createTime}}</td>
+           <td>
+				<span class="group_checked_button checked_button">选取</span>
+				<span class="group_cancel_button cancel_button">取消</span>		
+		  </td>
+        </tr>
+   	{{/each}}
+	</script>
+</body>
+</html>

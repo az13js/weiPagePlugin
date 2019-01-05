@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	<!-- 表单列表微页面 -->
+	<script id="mask_formList_weipage" type="text/html">
+      {{each record as item}}
+         <tr data-id="{{item.weiPageIdStr}}" data-title="{{item.title}}">
+           <td>{{item.title}}</td>
+           <td>{{item.createTime}}</td>
+           <td><span class="select_button" data-type="weiPage">选取</span></td>
+        </tr>
+     {{/each}}
+ 	</script>
+</body>
+</html>

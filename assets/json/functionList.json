@@ -1,0 +1,12 @@
+{
+	"result":1,
+	"msg":"",
+	"list":[
+				{"functionCode":"weipage","functionName":"自定义页面"},
+				{"functionCode":"product_detail","functionName":"商品"},
+				{"functionCode":"personal","functionName":"店铺首页"},
+				{"functionCode":"shop_home","functionName":"店铺首页"},
+				{"functionCode":"shoppingCart","functionName":"购物车"},
+				{"functionCode":"product_group","functionName":"商品分组"}
+			]
+}

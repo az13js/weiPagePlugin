@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<!-- 文本导航插件 -->
+	<script type="text/html" id="nav_list_view">
+            <div class="nav_wrap">
+                <ul class="nav_list child_list font_14">
+                    {{each subPlugInList as item}}
+                    		{{include 'nav_list_child_view' item}}
+					{{/each}}
+                </ul>
+            </div>
+	</script>
+	<!-- 文本导航子插件 -->
+	<script type="text/html" id="nav_list_child_view">
+        <li id="{{plugInUuid | parsePlugInUuid}}" data-plugInUuid="{{plugInUuid}}" class="nav_item subPlugIn_wrap {{plugInSelect |parsePlugInSelect}}" style="{{navStyle(plugInSelect,btnSelectedColor,btnColor)}}">
+            <a draggable="false" href="javascript:;" class="block_link">{{name | navName}}</a>
+        </li>
+	</script>
+	<!-- 图文导航插件 -->
+	<script type="text/html" id="nav_picture_view">
+            <div class="nav_picture_wrap">
+                <ul class="nav_list child_list font_14">
+                    {{each subPlugInList as item}}
+                    		{{include 'nav_picture_child_view' item}}
+					{{/each}}
+                </ul>
+            </div>
+	</script>
+	<!-- 图文导航内容 -->
+	<script type="text/html" id="nav_picture_child_view">
+		 <li id="{{plugInUuid | parsePlugInUuid}}" data-plugInUuid="{{plugInUuid}}" class="nav_item subPlugIn_wrap {{plugInSelect |parsePlugInSelect}}" >
+            <a draggable="false" href="javascript:;" class="block_link">
+				<div class="nav_picture_page">
+					<img src="{{showPicUrl | navPic}}" alt="" class="item_image" draggable="false" />
+				</div>
+				<p class="nav_picture_text">{{name | navName}}</p>
+			</a>
+        </li>
+	</script>
+	<!-- 导航插件编辑 -->
+	<script type="text/html" id="nav_edit">		
+			<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+            <h2 class="plugIn_name">导航</h2> 
+			<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">导航样式：</p>
+					<div class="input_wrap">						
+						<div class="form_one">
+							<input type="radio" name="showType" value="TEXTNAVI_TXT" data-redraw-form="true" data-deep-operate="true" {{if showType == 'TEXTNAVI_TXT'}}checked="checked"{{/if}} /> 文字  <input type="radio" name="showType" value="TEXTNAVI_PIC" data-redraw-form="true" data-deep-operate="true" {{if showType == 'TEXTNAVI_PIC'}}checked="checked"{{/if}} /> 图标+文字
+						</div>
+					</div>
+			</div>	
+			{{if showType == 'TEXTNAVI_TXT'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">按钮选中颜色:</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="btnSelectedColor" value="{{btnSelectedColor}}" data-deep-operate="true" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{btnSelectedColor}}" value="重置" />
+						</div>
+					</div>
+				</div>	
+				<div class="yui_form_wrap">
+					<p class="input_lable">按钮默认颜色:</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="btnColor" value="{{btnColor}}" data-deep-operate="true" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{btnColor}}" value="重置" />
+						</div>
+					</div>
+				</div>	
+			{{/if}}
+	</script>
+	<!-- 导航子插件编辑 -->
+	<script type="text/html" id="nav_child_edit">
+		<hr/>
+		<div class="addPlugIn addPlugIn_icon"></div>	
+		<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}" data-subPlugInId="{{plugInCommonIdStr}}"></div>
+		<div class="subPlugIn_option_page">
+		{{if showType == 'TEXTNAVI_PIC'}}			
+			<div class="yui_form_wrap">
+					<p class="input_lable">导航图片：</p>
+					<div class="input_wrap">							
+						<div class="image_wrap float_left">
+							<div class="upload_image image_item {{picKey | uploadComplete}}" data-action="true" >
+								<img class="image_view" src="{{showPicUrl | uploadImage}}" />
+								<input type="file" name="picKey" class="input_image" />
+							</div>
+						</div>	
+					</div>
+			</div>	
+		{{/if}}
+
+			<div class="yui_form_wrap">
+					<p class="input_lable">导航名称：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="name" value="{{name}}" placeholder="请输入导航名称" />	
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">链接到：</p>
+					<div class="input_wrap">													
+						<div class="form_one">
+							<select class="float_left" name="functionCode" data-redraw-form="true">
+								<option data-link="CUSTOM" value="CUSTOM" {{if linkType == 'CUSTOM'}}selected="selected"{{/if}}>自定义链接</option>
+								<option data-link="MODULE" value="MODULE" {{if linkType == 'MODULE'}}selected="selected"{{/if}}>本页面模块</option>
+								{{each functionList as item}}
+									<option data-link="FUNCTION" value="{{item.functionCode}}" {{if functionCode == item.functionCode}}selected="selected"{{/if}}>{{item.functionName}}</option>
+								{{/each}}						  
+							</select>	
+						</div>
+					</div>
+			</div>	
+			{{if  linkType == 'CUSTOM'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">自定义链接：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="link" placeholder="http://www.bookingtee.com/" value="{{link}}" />	
+						</div>
+					</div>
+				</div>	
+			{{else if linkType == 'MODULE'}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="text" class="input_text float_left size_l_m" name="link" placeholder="请输入模块编号" value="{{link}}" />	
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "product_detail"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择商品：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_detail">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_detail">+选择商品</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "weipage"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择微页面：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="weipage">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="weipage">+选择微页面</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{else if functionCode == "product_category"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择分类：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_category">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_category">+选择分类</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>		
+			{{else if functionCode == "product_group"}}
+				<div class="yui_form_wrap">
+					<p class="input_lable">选择分组：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							{{if buizId}}
+								<span class="title_btn">{{buizName}}</span>								
+								<span class="option_blue_btn" data-type="product_group">修改</span>
+							{{else}}
+								<span class="option_blue_btn" data-type="product_group">+选择分组</span>
+							{{/if}}		
+						</div>
+					</div>
+				</div>	
+			{{/if}}	
+		</div>
+	</script>
+</body>
+</html>

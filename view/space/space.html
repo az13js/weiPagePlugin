@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<!-- 辅助空白插件 -->
+	<script type="text/html" id="space_view">
+            <div class="space_wrap" style="height:{{height}}px"></div>
+	</script>
+	<!-- 辅助空白插件编辑 -->
+	<script type="text/html" id="space_edit">
+			<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+            <h2 class="plugIn_name">辅助空白</h2> 
+			<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">高度：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="range" name="height" max="100" min="20" value="{{height}}" data-redraw-form="true"  /><span class="range_text">{{height}}PX</span>
+						</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>	
+	</script>
+</body>
+</html>

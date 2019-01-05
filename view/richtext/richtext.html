@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<!-- 富文本插件 -->
+	<script type="text/html" id="RTE_view">
+            <div class="RTE_wrap">
+                {{#txtHtml}}
+            </div>
+	</script>
+	<!-- 富文本插件编辑 -->
+	<script type="text/html" id="RTE_edit">
+			<div class="removePlugIn removePlugIn_icon" data-plugInUuid="{{plugInUuid}}"></div>
+            <h2 class="plugIn_name">富文本</h2> 
+			<div class="yui_form_wrap">
+					<p class="input_lable">模块编号：</p>
+					<div class="input_wrap">	
+						<div class="form_one">{{identity}}</div>
+					</div>
+			</div>	
+			<div class="yui_form_wrap">
+					<p class="input_lable">背景颜色：</p>
+					<div class="input_wrap">	
+						<div class="form_one">
+							<input type="color"  name="backgroundColor" value="{{backgroundColor}}" />	
+							<input type="button" class="label_btn resetBtn" data-value="{{backgroundColor}}" value="重置" />
+						</div>
+						<p class="color_remark">背景颜色只在手机端使用</p>
+					</div>
+			</div>				
+			<div class="yui_form_wrap">
+					<p class="input_lable">是否全屏：</p>
+					<div class="input_wrap">							
+						<div class="form_one">
+							<input type="radio" name="fullscreen" value="YES" {{if fullscreen == 'YES'}}checked="checked"{{/if}} /> 是
+							<input type="radio" name="fullscreen" value="NO" {{if fullscreen == 'NO'}}checked="checked"{{/if}} /> 否
+						</div>
+					</div>
+			</div>	
+	</script>
+</body>
+</html>

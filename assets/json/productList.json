@@ -1,0 +1,19 @@
+{
+	"record":[
+		{"productId":"tewd6lbw","productCode":"","productName":"测试","picUrl":"http://shop-image.bookingtee.com/1EF9F82B34E45F499E76442335B4B18A.jpg","picKey":"1EF9F82B34E45F499E76442335B4B18A.jpg","categoryName":"","brandName":"","minPrice":0.01,"maxPrice":0.01,"sellingPrice":0.01,"originalPrice":0,"costPrice":0,"commission":0,"stockCount":99,"saleCount":1,"productStatus":"ONLINE","originalBusinessName":"","originalProductStatus":"NORMAL","addPrice":0,"canChoose":true,"createTime":"2017-08-22 22:02:33"},
+		{"productId":"tewd6lbu","productCode":"2300","productName":"她的衣裳","picUrl":"http://shop-image.bookingtee.com/3F12862EAA47B82381B07A49167DD835.jpg","picKey":"3F12862EAA47B82381B07A49167DD835.jpg","categoryName":"","brandName":"","minPrice":400,"maxPrice":400,"sellingPrice":400,"originalPrice":100,"costPrice":0,"commission":0,"stockCount":6,"saleCount":0,"productStatus":"ONLINE","originalBusinessName":"","originalProductStatus":"NORMAL","addPrice":0,"canChoose":true,"createTime":"2017-08-16 15:47:57"},
+		{"productId":"tewd6lbo","productCode":"","productName":"测试8月5日开售","picUrl":"http://shop-image.bookingtee.com/D22D993B9F8791CB080DD640686DF740.png","picKey":"D22D993B9F8791CB080DD640686DF740.png","categoryName":"","brandName":"","minPrice":0.01,"maxPrice":0.01,"sellingPrice":0.01,"originalPrice":1,"costPrice":0.01,"commission":0,"stockCount":90,"saleCount":10,"productStatus":"ONLINE","originalBusinessName":"林桂斌","originalProductStatus":"NORMAL","addPrice":0,"canChoose":true,"createTime":"2017-08-02 16:54:39"},
+		{"productId":"tewd6lbn","productCode":"","productName":"测试有规格电子卡券","picUrl":"http://shop-image.bookingtee.com/5B763671EAC1A556AF7273CD32685339.png","picKey":"5B763671EAC1A556AF7273CD32685339.png","categoryName":"","brandName":"","minPrice":0.03,"maxPrice":0.03,"sellingPrice":0.03,"originalPrice":0,"costPrice":0.03,"commission":0,"stockCount":44,"saleCount":0,"productStatus":"ONLINE","originalBusinessName":"林桂斌","originalProductStatus":"NORMAL","addPrice":0,"canChoose":true,"createTime":"2017-08-02 16:37:20"},
+		{"productId":"tewd6kxv","productCode":"","productName":"电子卡券","picUrl":"http://shop-image.bookingtee.com/5387796CBF0756258A9A62BC5DBA893A.png","picKey":"5387796CBF0756258A9A62BC5DBA893A.png","categoryName":"","brandName":"","minPrice":0.01,"maxPrice":0.01,"sellingPrice":0.01,"originalPrice":1,"costPrice":0.01,"commission":0,"stockCount":97,"saleCount":3,"productStatus":"ONLINE","originalBusinessName":"云高优选自营","originalProductStatus":"NORMAL","addPrice":0,"canChoose":true,"createTime":"2017-08-01 14:02:57"}
+	],
+	"hasMore":true,
+	"pageNo":1,
+	"pageCount":8,
+	"pageSize":5,
+	"totalCount":40,
+	"lastId":"",
+	"result":1,
+	"msg":"请求成功",
+	"errCode":"",
+	"successValue":""
+}
