@@ -137,7 +137,6 @@ assets里的其它文件为微页面所需要的一些资源文件。
 1. 修改插件model：找到weiPageModel.js对应的插件TEXTNAVI插件配置，由于该字段属于子插件，所以在subPlugIn中，将name修改title。
 
 ![](markdown-images/6.png)
-
 2. 修改插件模板：找到view/nav/nav.html模板（index.html的模板在index.html中）。找到里面input等表单标签name=”name”的标签改成name=”title”，接着把{{name}}改成{{title}}即可。有些插件涉及的模板较多，建议查询匹配修改。
 
 ## 8. 如何为微页面拓展新功能新插件
